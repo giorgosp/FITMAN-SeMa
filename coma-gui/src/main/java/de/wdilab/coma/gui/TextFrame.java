@@ -17,11 +17,23 @@
 
 package de.wdilab.coma.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.TextArea;
+import de.wdilab.coma.export.relationships.MatchResultExport;
+import de.wdilab.coma.export.relationships.RDFExport;
+import de.wdilab.coma.gui.dlg.Dlg_WorkflowVariables;
+import de.wdilab.coma.gui.dlg.editor.GrammarSyntaxDocument;
+import de.wdilab.coma.gui.extensions.XSLTmaker;
+import de.wdilab.coma.gui.extensions.XSLTmakerNoHierarchy;
+import de.wdilab.coma.matching.validation.TreeToWorkflow;
+import de.wdilab.coma.repository.DataAccess;
+import de.wdilab.coma.repository.DataImport;
+import de.wdilab.coma.structure.*;
+import org.antlr.runtime.tree.Tree;
+
+import javax.swing.*;
+import javax.swing.text.Document;
+import javax.swing.text.EditorKit;
+import javax.swing.text.StyledEditorKit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -30,34 +42,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-
-import javax.swing.JButton;
-import javax.swing.JEditorPane;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.text.Document;
-import javax.swing.text.EditorKit;
-import javax.swing.text.StyledEditorKit;
-
-import de.wdilab.coma.gui.extensions.XSLTmaker;
-import de.wdilab.coma.gui.extensions.XSLTmakerNoHierarchy;
-import org.antlr.runtime.tree.Tree;
-
-import de.wdilab.coma.export.relationships.MatchResultExport;
-import de.wdilab.coma.export.relationships.RDFExport;
-import de.wdilab.coma.gui.dlg.Dlg_WorkflowVariables;
-import de.wdilab.coma.gui.dlg.editor.GrammarSyntaxDocument;
-import de.wdilab.coma.matching.validation.TreeToWorkflow;
-import de.wdilab.coma.repository.DataAccess;
-import de.wdilab.coma.repository.DataImport;
-import de.wdilab.coma.structure.Element;
-import de.wdilab.coma.structure.EvaluationMeasure;
-import de.wdilab.coma.structure.Graph;
-import de.wdilab.coma.structure.MatchResult;
-import de.wdilab.coma.structure.Source;
 
 /**
  * TextFrame shows a given string in this frame. It is used e.g. to show the results of
@@ -372,7 +356,14 @@ public class TextFrame extends JFrame {
 				boolean success = validate(text, false);
 				if (text!=null && success){
 					String[] parts = text.split("->");
-					importer.updateWorkflowVariable(parts[0], parts[1]);
+					String name = parts[0];
+					String value = parts[1];
+
+					if (importer.existWorkflowVariable(name)) {
+						importer.updateWorkflowVariable(name, value);
+					} else {
+						importer.insertWorkflowVariable(name, value);
+					}
 					setVisible(false);
 //					if (dlgParent!=null){
 //						// TODO refresh

@@ -17,24 +17,15 @@
 
 package de.wdilab.coma.repository;
 
+import de.wdilab.coma.structure.*;
+import de.wdilab.coma.structure.graph.DirectedGraphImpl;
+import de.wdilab.coma.structure.graph.GraphUtil;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
-import de.wdilab.coma.structure.Element;
-import de.wdilab.coma.structure.Graph;
-import de.wdilab.coma.structure.MatchResult;
-import de.wdilab.coma.structure.MatchResultArray;
-import de.wdilab.coma.structure.Source;
-import de.wdilab.coma.structure.SourceRelationship;
-import de.wdilab.coma.structure.graph.DirectedGraphImpl;
-import de.wdilab.coma.structure.graph.GraphUtil;
+import java.util.*;
 
 /**
  * This class grants reading access to the information stored in the repository.
@@ -452,6 +443,7 @@ public class DataAccess extends Repository{
 			String valueTmp = getWorkflowVariable(nameTmp);
 			if (valueTmp==null){
 				System.out.println("DataAccess.replaceVariableNames() Error getting value for " + nameTmp);
+				return null;
 			} else {
 				value = value.replace(nameTmp, valueTmp);
 			}
