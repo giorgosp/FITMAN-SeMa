@@ -1,124 +1,128 @@
+// $ANTLR 3.4 /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g 2016-11-02 15:53:10
 package de.wdilab.coma.matching.validation;
-
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g 2012-06-29 09:44:49
-
 import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
 import org.antlr.runtime.debug.*;
+import org.antlr.runtime.tree.CommonTreeAdaptor;
+import org.antlr.runtime.tree.TreeAdaptor;
+
 import java.io.IOException;
 
-import org.antlr.runtime.tree.*;
 
+@SuppressWarnings({"all", "warnings", "unchecked"})
 public class ComaWorkFlowParser extends DebugParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "CHAR_BRACE_LEFT", "CHAR_BRACE_RIGHT", "CHAR_DOT", "CHAR_COMMA", "CHAR_SEMICOLON", "RESULT_COMBINATION", "RESOLUTION_1", "RESOLUTION_2", "SETCOMBINATION", "RESOLUTION_3", "SIMMEASURE", "DIGIT", "V2", "BOOLEAN", "COMPOSITION", "SIMCOMBINATION1", "DIRECTION", "SELECTION_THRESHOLD", "V1", "SELECTION_MAXDELTA", "SELECTION_MAXN", "SELECTION_MULTIPLE", "SIMCOMBINATION2"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BOOLEAN", "CHAR_BRACE_LEFT", "CHAR_BRACE_RIGHT", "CHAR_COMMA", "CHAR_DOT", "CHAR_SEMICOLON", "COMPOSITION", "DIGIT", "DIRECTION", "RESOLUTION_1", "RESOLUTION_2", "RESOLUTION_3", "RESULT_COMBINATION", "SELECTION_MAXDELTA", "SELECTION_MAXN", "SELECTION_MULTIPLE", "SELECTION_THRESHOLD", "SETCOMBINATION", "SIMCOMBINATION1", "SIMCOMBINATION2", "SIMMEASURE", "V1", "V2"
     };
+
     public static final int EOF=-1;
-    public static final int CHAR_BRACE_LEFT=4;
-    public static final int CHAR_BRACE_RIGHT=5;
-    public static final int CHAR_DOT=6;
+    public static final int BOOLEAN=4;
+    public static final int CHAR_BRACE_LEFT=5;
+    public static final int CHAR_BRACE_RIGHT=6;
     public static final int CHAR_COMMA=7;
-    public static final int CHAR_SEMICOLON=8;
-    public static final int RESULT_COMBINATION=9;
-    public static final int RESOLUTION_1=10;
-    public static final int RESOLUTION_2=11;
-    public static final int SETCOMBINATION=12;
-    public static final int RESOLUTION_3=13;
-    public static final int SIMMEASURE=14;
-    public static final int DIGIT=15;
-    public static final int V2=16;
-    public static final int BOOLEAN=17;
-    public static final int COMPOSITION=18;
-    public static final int SIMCOMBINATION1=19;
-    public static final int DIRECTION=20;
-    public static final int SELECTION_THRESHOLD=21;
-    public static final int V1=22;
-    public static final int SELECTION_MAXDELTA=23;
-    public static final int SELECTION_MAXN=24;
-    public static final int SELECTION_MULTIPLE=25;
-    public static final int SIMCOMBINATION2=26;
+    public static final int CHAR_DOT=8;
+    public static final int CHAR_SEMICOLON=9;
+    public static final int COMPOSITION=10;
+    public static final int DIGIT=11;
+    public static final int DIRECTION=12;
+    public static final int RESOLUTION_1=13;
+    public static final int RESOLUTION_2=14;
+    public static final int RESOLUTION_3=15;
+    public static final int RESULT_COMBINATION=16;
+    public static final int SELECTION_MAXDELTA=17;
+    public static final int SELECTION_MAXN=18;
+    public static final int SELECTION_MULTIPLE=19;
+    public static final int SELECTION_THRESHOLD=20;
+    public static final int SETCOMBINATION=21;
+    public static final int SIMCOMBINATION1=22;
+    public static final int SIMCOMBINATION2=23;
+    public static final int SIMMEASURE=24;
+    public static final int V1=25;
+    public static final int V2=26;
 
     // delegates
+    public Parser[] getDelegates() {
+        return new Parser[] {};
+    }
+
     // delegators
 
-    public static final String[] ruleNames = new String[] {
-        "invalidRule", "synpred1_ComaWorkFlow", "synpred39_ComaWorkFlow", 
-        "synpred38_ComaWorkFlow", "synpred8_ComaWorkFlow", "reuse", "synpred17_ComaWorkFlow", 
-        "synpred28_ComaWorkFlow", "synpred5_ComaWorkFlow", "synpred10_ComaWorkFlow", 
-        "synpred11_ComaWorkFlow", "synpred24_ComaWorkFlow", "synpred6_ComaWorkFlow", 
-        "synpred13_ComaWorkFlow", "allowedToken", "strategy", "synpred20_ComaWorkFlow", 
-        "matcher", "synpred3_ComaWorkFlow", "complexMatcher", "synpred35_ComaWorkFlow", 
-        "selection", "synpred23_ComaWorkFlow", "synpred25_ComaWorkFlow", 
-        "coma", "synpred33_ComaWorkFlow", "synpred18_ComaWorkFlow", "synpred26_ComaWorkFlow", 
-        "synpred30_ComaWorkFlow", "synpred21_ComaWorkFlow", "synpred34_ComaWorkFlow", 
-        "synpred32_ComaWorkFlow", "synpred40_ComaWorkFlow", "similarityCombination", 
-        "synpred12_ComaWorkFlow", "synpred27_ComaWorkFlow", "synpred2_ComaWorkFlow", 
-        "synpred16_ComaWorkFlow", "synpred7_ComaWorkFlow", "synpred19_ComaWorkFlow", 
-        "synpred15_ComaWorkFlow", "synpred37_ComaWorkFlow", "synpred22_ComaWorkFlow", 
-        "synpred9_ComaWorkFlow", "synpred31_ComaWorkFlow", "synpred14_ComaWorkFlow", 
-        "selectionParameter", "synpred4_ComaWorkFlow", "workflow", "synpred29_ComaWorkFlow", 
-        "synpred36_ComaWorkFlow"
-    };
-    public static final boolean[] decisionCanBacktrack = new boolean[] {
-        false, // invalid decision
-        false, false, false, false, true, false, true, false, false, false, 
-            false, false, true, false, false, false, false, false, false, 
-            false, false, false, false, false, false, false
-    };
 
-     
-        public int ruleLevel = 0;
-        public int getRuleLevel() { return ruleLevel; }
-        public void incRuleLevel() { ruleLevel++; }
-        public void decRuleLevel() { ruleLevel--; }
-        public ComaWorkFlowParser(TokenStream input) {
-            this(input, DebugEventSocketProxy.DEFAULT_DEBUGGER_PORT, new RecognizerSharedState());
-        }
-        public ComaWorkFlowParser(TokenStream input, int port, RecognizerSharedState state) {
-            super(input, state);
-            DebugEventSocketProxy proxy =
-                new DebugEventSocketProxy(this,port,adaptor);
-            setDebugListener(proxy);
-            setTokenStream(new DebugTokenStream(input,proxy));
-            try {
-                proxy.handshake();
-            }
-            catch (IOException ioe) {
-                reportError(ioe);
-            }
-            TreeAdaptor adap = new CommonTreeAdaptor();
-            setTreeAdaptor(adap);
-            proxy.setTreeAdaptor(adap);
-        }
-    public ComaWorkFlowParser(TokenStream input, DebugEventListener dbg) {
-        super(input, dbg);
+public static final String[] ruleNames = new String[] {
+    "invalidRule", "synpred3_ComaWorkFlow", "allowedToken", "synpred38_ComaWorkFlow", 
+    "synpred23_ComaWorkFlow", "synpred40_ComaWorkFlow", "synpred30_ComaWorkFlow", 
+    "synpred12_ComaWorkFlow", "synpred32_ComaWorkFlow", "synpred36_ComaWorkFlow", 
+    "selectionParameter", "selection", "synpred18_ComaWorkFlow", "synpred26_ComaWorkFlow", 
+    "synpred7_ComaWorkFlow", "coma", "similarityCombination", "synpred20_ComaWorkFlow", 
+    "reuse", "synpred15_ComaWorkFlow", "synpred1_ComaWorkFlow", "synpred2_ComaWorkFlow", 
+    "synpred17_ComaWorkFlow", "synpred13_ComaWorkFlow", "synpred29_ComaWorkFlow", 
+    "synpred22_ComaWorkFlow", "synpred11_ComaWorkFlow", "synpred19_ComaWorkFlow", 
+    "synpred37_ComaWorkFlow", "synpred31_ComaWorkFlow", "synpred34_ComaWorkFlow", 
+    "synpred25_ComaWorkFlow", "synpred33_ComaWorkFlow", "synpred24_ComaWorkFlow", 
+    "complexMatcher", "synpred16_ComaWorkFlow", "synpred9_ComaWorkFlow", 
+    "synpred28_ComaWorkFlow", "synpred10_ComaWorkFlow", "synpred39_ComaWorkFlow", 
+    "synpred8_ComaWorkFlow", "synpred35_ComaWorkFlow", "synpred27_ComaWorkFlow", 
+    "synpred21_ComaWorkFlow", "synpred14_ComaWorkFlow", "synpred4_ComaWorkFlow", 
+    "synpred5_ComaWorkFlow", "strategy", "workflow", "matcher", "synpred6_ComaWorkFlow"
+};
 
-         
+public static final boolean[] decisionCanBacktrack = new boolean[] {
+    false, // invalid decision
+    false, false, false, false, true, false, true, false, false, false, 
+        false, false, true, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false
+};
+
+ 
+    public int ruleLevel = 0;
+    public int getRuleLevel() { return ruleLevel; }
+    public void incRuleLevel() { ruleLevel++; }
+    public void decRuleLevel() { ruleLevel--; }
+    public ComaWorkFlowParser(TokenStream input) {
+        this(input, DebugEventSocketProxy.DEFAULT_DEBUGGER_PORT, new RecognizerSharedState());
+    }
+    public ComaWorkFlowParser(TokenStream input, int port, RecognizerSharedState state) {
+        super(input, state);
+        DebugEventSocketProxy proxy =
+            new DebugEventSocketProxy(this,port,adaptor);
+        setDebugListener(proxy);
+        setTokenStream(new DebugTokenStream(input,proxy));
+        try {
+            proxy.handshake();
+        }
+        catch (IOException ioe) {
+            reportError(ioe);
+        }
         TreeAdaptor adap = new CommonTreeAdaptor();
         setTreeAdaptor(adap);
-
-    }
-    protected boolean evalPredicate(boolean result, String predicate) {
-        dbg.semanticPredicate(result, predicate);
-        return result;
+        proxy.setTreeAdaptor(adap);
     }
 
-    protected DebugTreeAdaptor adaptor;
-    public void setTreeAdaptor(TreeAdaptor adaptor) {
-        this.adaptor = new DebugTreeAdaptor(dbg,adaptor);
+public ComaWorkFlowParser(TokenStream input, DebugEventListener dbg) {
+    super(input, dbg);
+     
+    TreeAdaptor adap = new CommonTreeAdaptor();
+    setTreeAdaptor(adap);
 
-    }
-    public TreeAdaptor getTreeAdaptor() {
-        return adaptor;
-    }
 
+}
+
+protected boolean evalPredicate(boolean result, String predicate) {
+    dbg.semanticPredicate(result, predicate);
+    return result;
+}
+
+protected DebugTreeAdaptor adaptor;
+public void setTreeAdaptor(TreeAdaptor adaptor) {
+    this.adaptor = new DebugTreeAdaptor(dbg,adaptor);
+
+
+}
+public TreeAdaptor getTreeAdaptor() {
+    return adaptor;
+}
 
     public String[] getTokenNames() { return ComaWorkFlowParser.tokenNames; }
-    public String getGrammarFileName() { return "C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g"; }
+    public String getGrammarFileName() { return "/Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g"; }
 
 
     public static class coma_return extends ParserRuleReturnScope {
@@ -126,31 +130,33 @@ public class ComaWorkFlowParser extends DebugParser {
         public Object getTree() { return tree; }
     };
 
+
     // $ANTLR start "coma"
-    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:37:2: coma : ( workflow | strategy | complexMatcher | matcher );
+    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:37:2: coma : ( workflow | strategy | complexMatcher | matcher );
     public final ComaWorkFlowParser.coma_return coma() throws RecognitionException {
         ComaWorkFlowParser.coma_return retval = new ComaWorkFlowParser.coma_return();
         retval.start = input.LT(1);
 
+
         Object root_0 = null;
 
-        ComaWorkFlowParser.workflow_return workflow1 = null;
+        ComaWorkFlowParser.workflow_return workflow1 =null;
 
-        ComaWorkFlowParser.strategy_return strategy2 = null;
+        ComaWorkFlowParser.strategy_return strategy2 =null;
 
-        ComaWorkFlowParser.complexMatcher_return complexMatcher3 = null;
+        ComaWorkFlowParser.complexMatcher_return complexMatcher3 =null;
 
-        ComaWorkFlowParser.matcher_return matcher4 = null;
+        ComaWorkFlowParser.matcher_return matcher4 =null;
 
 
 
         try { dbg.enterRule(getGrammarFileName(), "coma");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(37, 2);
+        dbg.location(37, 1);
 
         try {
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:37:7: ( workflow | strategy | complexMatcher | matcher )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:37:7: ( workflow | strategy | complexMatcher | matcher )
             int alt1=4;
             try { dbg.enterDecision(1, decisionCanBacktrack[1]);
 
@@ -187,6 +193,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                     dbg.recognitionException(nvae);
                     throw nvae;
+
                 }
 
             }
@@ -197,6 +204,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                 dbg.recognitionException(nvae);
                 throw nvae;
+
             }
             } finally {dbg.exitDecision(1);}
 
@@ -204,9 +212,10 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:37:11: workflow
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:37:11: workflow
                     {
                     root_0 = (Object)adaptor.nil();
+
 
                     dbg.location(37,11);
                     pushFollow(FOLLOW_workflow_in_coma120);
@@ -221,9 +230,10 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:37:22: strategy
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:37:22: strategy
                     {
                     root_0 = (Object)adaptor.nil();
+
 
                     dbg.location(37,22);
                     pushFollow(FOLLOW_strategy_in_coma124);
@@ -238,9 +248,10 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:37:33: complexMatcher
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:37:33: complexMatcher
                     {
                     root_0 = (Object)adaptor.nil();
+
 
                     dbg.location(37,33);
                     pushFollow(FOLLOW_complexMatcher_in_coma128);
@@ -255,9 +266,10 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 4 :
                     dbg.enterAlt(4);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:37:50: matcher
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:37:50: matcher
                     {
                     root_0 = (Object)adaptor.nil();
+
 
                     dbg.location(37,50);
                     pushFollow(FOLLOW_matcher_in_coma132);
@@ -273,6 +285,7 @@ public class ComaWorkFlowParser extends DebugParser {
             }
             retval.stop = input.LT(-1);
 
+
             if ( state.backtracking==0 ) {
 
             retval.tree = (Object)adaptor.rulePostProcessing(root_0);
@@ -285,9 +298,11 @@ public class ComaWorkFlowParser extends DebugParser {
     	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 
         }
+
         finally {
+        	// do for sure before leaving
         }
-        dbg.location(37, 57);
+        dbg.location(37, 56);
 
         }
         finally {
@@ -300,16 +315,19 @@ public class ComaWorkFlowParser extends DebugParser {
     }
     // $ANTLR end "coma"
 
+
     public static class workflow_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
+
     // $ANTLR start "workflow"
-    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:39:2: workflow : CHAR_BRACE_LEFT ( ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? ) | ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? ) | ( strategy ) | ( reuse ) ) CHAR_BRACE_RIGHT ;
+    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:39:2: workflow : CHAR_BRACE_LEFT ( ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? ) | ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? ) | ( strategy ) | ( reuse ) ) CHAR_BRACE_RIGHT ;
     public final ComaWorkFlowParser.workflow_return workflow() throws RecognitionException {
         ComaWorkFlowParser.workflow_return retval = new ComaWorkFlowParser.workflow_return();
         retval.start = input.LT(1);
+
 
         Object root_0 = null;
 
@@ -320,19 +338,19 @@ public class ComaWorkFlowParser extends DebugParser {
         Token CHAR_SEMICOLON14=null;
         Token RESULT_COMBINATION15=null;
         Token CHAR_BRACE_RIGHT18=null;
-        ComaWorkFlowParser.strategy_return strategy6 = null;
+        ComaWorkFlowParser.strategy_return strategy6 =null;
 
-        ComaWorkFlowParser.strategy_return strategy8 = null;
+        ComaWorkFlowParser.strategy_return strategy8 =null;
 
-        ComaWorkFlowParser.selection_return selection10 = null;
+        ComaWorkFlowParser.selection_return selection10 =null;
 
-        ComaWorkFlowParser.strategy_return strategy11 = null;
+        ComaWorkFlowParser.strategy_return strategy11 =null;
 
-        ComaWorkFlowParser.strategy_return strategy13 = null;
+        ComaWorkFlowParser.strategy_return strategy13 =null;
 
-        ComaWorkFlowParser.strategy_return strategy16 = null;
+        ComaWorkFlowParser.strategy_return strategy16 =null;
 
-        ComaWorkFlowParser.reuse_return reuse17 = null;
+        ComaWorkFlowParser.reuse_return reuse17 =null;
 
 
         Object CHAR_BRACE_LEFT5_tree=null;
@@ -346,24 +364,27 @@ public class ComaWorkFlowParser extends DebugParser {
         try { dbg.enterRule(getGrammarFileName(), "workflow");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(39, 2);
+        dbg.location(39, 1);
 
         try {
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:39:11: ( CHAR_BRACE_LEFT ( ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? ) | ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? ) | ( strategy ) | ( reuse ) ) CHAR_BRACE_RIGHT )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:39:11: ( CHAR_BRACE_LEFT ( ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? ) | ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? ) | ( strategy ) | ( reuse ) ) CHAR_BRACE_RIGHT )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:40:5: CHAR_BRACE_LEFT ( ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? ) | ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? ) | ( strategy ) | ( reuse ) ) CHAR_BRACE_RIGHT
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:40:5: CHAR_BRACE_LEFT ( ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? ) | ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? ) | ( strategy ) | ( reuse ) ) CHAR_BRACE_RIGHT
             {
             root_0 = (Object)adaptor.nil();
+
 
             dbg.location(40,5);
             CHAR_BRACE_LEFT5=(Token)match(input,CHAR_BRACE_LEFT,FOLLOW_CHAR_BRACE_LEFT_in_workflow149); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_BRACE_LEFT5_tree = (Object)adaptor.create(CHAR_BRACE_LEFT5);
+            CHAR_BRACE_LEFT5_tree = 
+            (Object)adaptor.create(CHAR_BRACE_LEFT5)
+            ;
             adaptor.addChild(root_0, CHAR_BRACE_LEFT5_tree);
             }
             dbg.location(41,6);
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:41:6: ( ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? ) | ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? ) | ( strategy ) | ( reuse ) )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:41:6: ( ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? ) | ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? ) | ( strategy ) | ( reuse ) )
             int alt5=4;
             try { dbg.enterSubRule(5);
             try { dbg.enterDecision(5, decisionCanBacktrack[5]);
@@ -389,9 +410,10 @@ public class ComaWorkFlowParser extends DebugParser {
 
                     dbg.recognitionException(nvae);
                     throw nvae;
+
                 }
             }
-            else if ( ((LA5_0>=DIGIT && LA5_0<=V2)) ) {
+            else if ( (LA5_0==DIGIT||LA5_0==V2) ) {
                 alt5=4;
             }
             else {
@@ -401,6 +423,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                 dbg.recognitionException(nvae);
                 throw nvae;
+
             }
             } finally {dbg.exitDecision(5);}
 
@@ -408,13 +431,13 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:42:7: ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:42:7: ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? )
                     {
                     dbg.location(42,7);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:42:7: ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:42:7: ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:42:9: strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )?
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:42:9: strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )?
                     {
                     dbg.location(42,9);
                     pushFollow(FOLLOW_strategy_in_workflow169);
@@ -426,7 +449,9 @@ public class ComaWorkFlowParser extends DebugParser {
                     dbg.location(42,19);
                     CHAR_SEMICOLON7=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_workflow172); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_SEMICOLON7_tree = (Object)adaptor.create(CHAR_SEMICOLON7);
+                    CHAR_SEMICOLON7_tree = 
+                    (Object)adaptor.create(CHAR_SEMICOLON7)
+                    ;
                     adaptor.addChild(root_0, CHAR_SEMICOLON7_tree);
                     }
                     dbg.location(42,34);
@@ -437,7 +462,7 @@ public class ComaWorkFlowParser extends DebugParser {
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, strategy8.getTree());
                     dbg.location(42,43);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:42:43: ( CHAR_SEMICOLON selection )?
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:42:43: ( CHAR_SEMICOLON selection )?
                     int alt2=2;
                     try { dbg.enterSubRule(2);
                     try { dbg.enterDecision(2, decisionCanBacktrack[2]);
@@ -453,12 +478,14 @@ public class ComaWorkFlowParser extends DebugParser {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:42:44: CHAR_SEMICOLON selection
+                            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:42:44: CHAR_SEMICOLON selection
                             {
                             dbg.location(42,44);
                             CHAR_SEMICOLON9=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_workflow177); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
-                            CHAR_SEMICOLON9_tree = (Object)adaptor.create(CHAR_SEMICOLON9);
+                            CHAR_SEMICOLON9_tree = 
+                            (Object)adaptor.create(CHAR_SEMICOLON9)
+                            ;
                             adaptor.addChild(root_0, CHAR_SEMICOLON9_tree);
                             }
                             dbg.location(42,59);
@@ -484,13 +511,13 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:7: ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:7: ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? )
                     {
                     dbg.location(44,7);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:7: ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:7: ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:9: strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )?
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:9: strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )?
                     {
                     dbg.location(44,9);
                     pushFollow(FOLLOW_strategy_in_workflow200);
@@ -500,7 +527,7 @@ public class ComaWorkFlowParser extends DebugParser {
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, strategy11.getTree());
                     dbg.location(44,18);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:18: ( CHAR_COMMA strategy )+
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:18: ( CHAR_COMMA strategy )+
                     int cnt3=0;
                     try { dbg.enterSubRule(3);
 
@@ -522,12 +549,14 @@ public class ComaWorkFlowParser extends DebugParser {
                     	case 1 :
                     	    dbg.enterAlt(1);
 
-                    	    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:19: CHAR_COMMA strategy
+                    	    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:19: CHAR_COMMA strategy
                     	    {
                     	    dbg.location(44,19);
                     	    CHAR_COMMA12=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_workflow203); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    CHAR_COMMA12_tree = (Object)adaptor.create(CHAR_COMMA12);
+                    	    CHAR_COMMA12_tree = 
+                    	    (Object)adaptor.create(CHAR_COMMA12)
+                    	    ;
                     	    adaptor.addChild(root_0, CHAR_COMMA12_tree);
                     	    }
                     	    dbg.location(44,30);
@@ -555,7 +584,7 @@ public class ComaWorkFlowParser extends DebugParser {
                     } finally {dbg.exitSubRule(3);}
 
                     dbg.location(44,41);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:41: ( CHAR_SEMICOLON RESULT_COMBINATION )?
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:41: ( CHAR_SEMICOLON RESULT_COMBINATION )?
                     int alt4=2;
                     try { dbg.enterSubRule(4);
                     try { dbg.enterDecision(4, decisionCanBacktrack[4]);
@@ -571,18 +600,22 @@ public class ComaWorkFlowParser extends DebugParser {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:42: CHAR_SEMICOLON RESULT_COMBINATION
+                            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:42: CHAR_SEMICOLON RESULT_COMBINATION
                             {
                             dbg.location(44,42);
                             CHAR_SEMICOLON14=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_workflow210); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
-                            CHAR_SEMICOLON14_tree = (Object)adaptor.create(CHAR_SEMICOLON14);
+                            CHAR_SEMICOLON14_tree = 
+                            (Object)adaptor.create(CHAR_SEMICOLON14)
+                            ;
                             adaptor.addChild(root_0, CHAR_SEMICOLON14_tree);
                             }
                             dbg.location(44,57);
                             RESULT_COMBINATION15=(Token)match(input,RESULT_COMBINATION,FOLLOW_RESULT_COMBINATION_in_workflow212); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
-                            RESULT_COMBINATION15_tree = (Object)adaptor.create(RESULT_COMBINATION15);
+                            RESULT_COMBINATION15_tree = 
+                            (Object)adaptor.create(RESULT_COMBINATION15)
+                            ;
                             adaptor.addChild(root_0, RESULT_COMBINATION15_tree);
                             }
 
@@ -601,13 +634,13 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:46:7: ( strategy )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:46:7: ( strategy )
                     {
                     dbg.location(46,7);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:46:7: ( strategy )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:46:7: ( strategy )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:46:8: strategy
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:46:8: strategy
                     {
                     dbg.location(46,8);
                     pushFollow(FOLLOW_strategy_in_workflow234);
@@ -625,13 +658,13 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 4 :
                     dbg.enterAlt(4);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:48:7: ( reuse )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:48:7: ( reuse )
                     {
                     dbg.location(48,7);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:48:7: ( reuse )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:48:7: ( reuse )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:48:8: reuse
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:48:8: reuse
                     {
                     dbg.location(48,8);
                     pushFollow(FOLLOW_reuse_in_workflow259);
@@ -653,13 +686,16 @@ public class ComaWorkFlowParser extends DebugParser {
             dbg.location(50,5);
             CHAR_BRACE_RIGHT18=(Token)match(input,CHAR_BRACE_RIGHT,FOLLOW_CHAR_BRACE_RIGHT_in_workflow273); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_BRACE_RIGHT18_tree = (Object)adaptor.create(CHAR_BRACE_RIGHT18);
+            CHAR_BRACE_RIGHT18_tree = 
+            (Object)adaptor.create(CHAR_BRACE_RIGHT18)
+            ;
             adaptor.addChild(root_0, CHAR_BRACE_RIGHT18_tree);
             }
 
             }
 
             retval.stop = input.LT(-1);
+
 
             if ( state.backtracking==0 ) {
 
@@ -673,9 +709,11 @@ public class ComaWorkFlowParser extends DebugParser {
     	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 
         }
+
         finally {
+        	// do for sure before leaving
         }
-        dbg.location(50, 21);
+        dbg.location(50, 20);
 
         }
         finally {
@@ -688,16 +726,19 @@ public class ComaWorkFlowParser extends DebugParser {
     }
     // $ANTLR end "workflow"
 
+
     public static class strategy_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
+
     // $ANTLR start "strategy"
-    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:56:2: strategy : CHAR_BRACE_LEFT ( RESOLUTION_1 CHAR_SEMICOLON ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? ) ) CHAR_BRACE_RIGHT ;
+    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:56:2: strategy : CHAR_BRACE_LEFT ( RESOLUTION_1 CHAR_SEMICOLON ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? ) ) CHAR_BRACE_RIGHT ;
     public final ComaWorkFlowParser.strategy_return strategy() throws RecognitionException {
         ComaWorkFlowParser.strategy_return retval = new ComaWorkFlowParser.strategy_return();
         retval.start = input.LT(1);
+
 
         Object root_0 = null;
 
@@ -708,15 +749,15 @@ public class ComaWorkFlowParser extends DebugParser {
         Token CHAR_SEMICOLON25=null;
         Token CHAR_SEMICOLON28=null;
         Token CHAR_BRACE_RIGHT30=null;
-        ComaWorkFlowParser.complexMatcher_return complexMatcher22 = null;
+        ComaWorkFlowParser.complexMatcher_return complexMatcher22 =null;
 
-        ComaWorkFlowParser.complexMatcher_return complexMatcher24 = null;
+        ComaWorkFlowParser.complexMatcher_return complexMatcher24 =null;
 
-        ComaWorkFlowParser.similarityCombination_return similarityCombination26 = null;
+        ComaWorkFlowParser.similarityCombination_return similarityCombination26 =null;
 
-        ComaWorkFlowParser.complexMatcher_return complexMatcher27 = null;
+        ComaWorkFlowParser.complexMatcher_return complexMatcher27 =null;
 
-        ComaWorkFlowParser.selection_return selection29 = null;
+        ComaWorkFlowParser.selection_return selection29 =null;
 
 
         Object CHAR_BRACE_LEFT19_tree=null;
@@ -730,48 +771,55 @@ public class ComaWorkFlowParser extends DebugParser {
         try { dbg.enterRule(getGrammarFileName(), "strategy");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(56, 2);
+        dbg.location(56, 1);
 
         try {
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:56:11: ( CHAR_BRACE_LEFT ( RESOLUTION_1 CHAR_SEMICOLON ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? ) ) CHAR_BRACE_RIGHT )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:56:11: ( CHAR_BRACE_LEFT ( RESOLUTION_1 CHAR_SEMICOLON ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? ) ) CHAR_BRACE_RIGHT )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:58:5: CHAR_BRACE_LEFT ( RESOLUTION_1 CHAR_SEMICOLON ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? ) ) CHAR_BRACE_RIGHT
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:58:5: CHAR_BRACE_LEFT ( RESOLUTION_1 CHAR_SEMICOLON ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? ) ) CHAR_BRACE_RIGHT
             {
             root_0 = (Object)adaptor.nil();
+
 
             dbg.location(58,5);
             CHAR_BRACE_LEFT19=(Token)match(input,CHAR_BRACE_LEFT,FOLLOW_CHAR_BRACE_LEFT_in_strategy307); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_BRACE_LEFT19_tree = (Object)adaptor.create(CHAR_BRACE_LEFT19);
+            CHAR_BRACE_LEFT19_tree = 
+            (Object)adaptor.create(CHAR_BRACE_LEFT19)
+            ;
             adaptor.addChild(root_0, CHAR_BRACE_LEFT19_tree);
             }
             dbg.location(59,6);
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:59:6: ( RESOLUTION_1 CHAR_SEMICOLON ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? ) )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:59:6: ( RESOLUTION_1 CHAR_SEMICOLON ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? ) )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:59:8: RESOLUTION_1 CHAR_SEMICOLON ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:59:8: RESOLUTION_1 CHAR_SEMICOLON ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? )
             {
             dbg.location(59,8);
             RESOLUTION_120=(Token)match(input,RESOLUTION_1,FOLLOW_RESOLUTION_1_in_strategy318); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            RESOLUTION_120_tree = (Object)adaptor.create(RESOLUTION_120);
+            RESOLUTION_120_tree = 
+            (Object)adaptor.create(RESOLUTION_120)
+            ;
             adaptor.addChild(root_0, RESOLUTION_120_tree);
             }
             dbg.location(60,7);
             CHAR_SEMICOLON21=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_strategy327); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_SEMICOLON21_tree = (Object)adaptor.create(CHAR_SEMICOLON21);
+            CHAR_SEMICOLON21_tree = 
+            (Object)adaptor.create(CHAR_SEMICOLON21)
+            ;
             adaptor.addChild(root_0, CHAR_SEMICOLON21_tree);
             }
             dbg.location(61,7);
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:61:7: ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:61:7: ( ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )? )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:62:8: ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )?
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:62:8: ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) ) ( CHAR_SEMICOLON selection )?
             {
             dbg.location(62,8);
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:62:8: ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:62:8: ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) | ( complexMatcher ) )
             int alt7=2;
             try { dbg.enterSubRule(7);
             try { dbg.enterDecision(7, decisionCanBacktrack[7]);
@@ -794,6 +842,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                     dbg.recognitionException(nvae);
                     throw nvae;
+
                 }
             }
             else {
@@ -803,6 +852,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                 dbg.recognitionException(nvae);
                 throw nvae;
+
             }
             } finally {dbg.exitDecision(7);}
 
@@ -810,13 +860,13 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:9: ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:9: ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) )
                     {
                     dbg.location(63,9);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:9: ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:9: ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:10: complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:10: complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination )
                     {
                     dbg.location(63,10);
                     pushFollow(FOLLOW_complexMatcher_in_strategy357);
@@ -826,13 +876,13 @@ public class ComaWorkFlowParser extends DebugParser {
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, complexMatcher22.getTree());
                     dbg.location(63,25);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:25: ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:25: ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:26: ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:26: ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination
                     {
                     dbg.location(63,26);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:26: ( CHAR_COMMA complexMatcher )+
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:26: ( CHAR_COMMA complexMatcher )+
                     int cnt6=0;
                     try { dbg.enterSubRule(6);
 
@@ -854,12 +904,14 @@ public class ComaWorkFlowParser extends DebugParser {
                     	case 1 :
                     	    dbg.enterAlt(1);
 
-                    	    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:27: CHAR_COMMA complexMatcher
+                    	    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:27: CHAR_COMMA complexMatcher
                     	    {
                     	    dbg.location(63,27);
                     	    CHAR_COMMA23=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_strategy361); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    CHAR_COMMA23_tree = (Object)adaptor.create(CHAR_COMMA23);
+                    	    CHAR_COMMA23_tree = 
+                    	    (Object)adaptor.create(CHAR_COMMA23)
+                    	    ;
                     	    adaptor.addChild(root_0, CHAR_COMMA23_tree);
                     	    }
                     	    dbg.location(63,38);
@@ -889,7 +941,9 @@ public class ComaWorkFlowParser extends DebugParser {
                     dbg.location(63,55);
                     CHAR_SEMICOLON25=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_strategy367); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_SEMICOLON25_tree = (Object)adaptor.create(CHAR_SEMICOLON25);
+                    CHAR_SEMICOLON25_tree = 
+                    (Object)adaptor.create(CHAR_SEMICOLON25)
+                    ;
                     adaptor.addChild(root_0, CHAR_SEMICOLON25_tree);
                     }
                     dbg.location(63,70);
@@ -911,13 +965,13 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:65:9: ( complexMatcher )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:65:9: ( complexMatcher )
                     {
                     dbg.location(65,9);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:65:9: ( complexMatcher )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:65:9: ( complexMatcher )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:65:10: complexMatcher
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:65:10: complexMatcher
                     {
                     dbg.location(65,10);
                     pushFollow(FOLLOW_complexMatcher_in_strategy393);
@@ -937,7 +991,7 @@ public class ComaWorkFlowParser extends DebugParser {
             } finally {dbg.exitSubRule(7);}
 
             dbg.location(67,8);
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:67:8: ( CHAR_SEMICOLON selection )?
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:67:8: ( CHAR_SEMICOLON selection )?
             int alt8=2;
             try { dbg.enterSubRule(8);
             try { dbg.enterDecision(8, decisionCanBacktrack[8]);
@@ -953,12 +1007,14 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:67:9: CHAR_SEMICOLON selection
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:67:9: CHAR_SEMICOLON selection
                     {
                     dbg.location(67,9);
                     CHAR_SEMICOLON28=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_strategy417); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_SEMICOLON28_tree = (Object)adaptor.create(CHAR_SEMICOLON28);
+                    CHAR_SEMICOLON28_tree = 
+                    (Object)adaptor.create(CHAR_SEMICOLON28)
+                    ;
                     adaptor.addChild(root_0, CHAR_SEMICOLON28_tree);
                     }
                     dbg.location(67,24);
@@ -984,13 +1040,16 @@ public class ComaWorkFlowParser extends DebugParser {
             dbg.location(70,5);
             CHAR_BRACE_RIGHT30=(Token)match(input,CHAR_BRACE_RIGHT,FOLLOW_CHAR_BRACE_RIGHT_in_strategy447); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_BRACE_RIGHT30_tree = (Object)adaptor.create(CHAR_BRACE_RIGHT30);
+            CHAR_BRACE_RIGHT30_tree = 
+            (Object)adaptor.create(CHAR_BRACE_RIGHT30)
+            ;
             adaptor.addChild(root_0, CHAR_BRACE_RIGHT30_tree);
             }
 
             }
 
             retval.stop = input.LT(-1);
+
 
             if ( state.backtracking==0 ) {
 
@@ -1004,9 +1063,11 @@ public class ComaWorkFlowParser extends DebugParser {
     	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 
         }
+
         finally {
+        	// do for sure before leaving
         }
-        dbg.location(70, 21);
+        dbg.location(70, 20);
 
         }
         finally {
@@ -1019,16 +1080,19 @@ public class ComaWorkFlowParser extends DebugParser {
     }
     // $ANTLR end "strategy"
 
+
     public static class complexMatcher_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
+
     // $ANTLR start "complexMatcher"
-    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:75:2: complexMatcher : CHAR_BRACE_LEFT ( RESOLUTION_2 CHAR_SEMICOLON ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT ;
+    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:75:2: complexMatcher : CHAR_BRACE_LEFT ( RESOLUTION_2 CHAR_SEMICOLON ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT ;
     public final ComaWorkFlowParser.complexMatcher_return complexMatcher() throws RecognitionException {
         ComaWorkFlowParser.complexMatcher_return retval = new ComaWorkFlowParser.complexMatcher_return();
         retval.start = input.LT(1);
+
 
         Object root_0 = null;
 
@@ -1040,19 +1104,19 @@ public class ComaWorkFlowParser extends DebugParser {
         Token CHAR_SEMICOLON43=null;
         Token SETCOMBINATION44=null;
         Token CHAR_BRACE_RIGHT45=null;
-        ComaWorkFlowParser.matcher_return matcher34 = null;
+        ComaWorkFlowParser.matcher_return matcher34 =null;
 
-        ComaWorkFlowParser.complexMatcher_return complexMatcher35 = null;
+        ComaWorkFlowParser.complexMatcher_return complexMatcher35 =null;
 
-        ComaWorkFlowParser.matcher_return matcher37 = null;
+        ComaWorkFlowParser.matcher_return matcher37 =null;
 
-        ComaWorkFlowParser.complexMatcher_return complexMatcher38 = null;
+        ComaWorkFlowParser.complexMatcher_return complexMatcher38 =null;
 
-        ComaWorkFlowParser.similarityCombination_return similarityCombination40 = null;
+        ComaWorkFlowParser.similarityCombination_return similarityCombination40 =null;
 
-        ComaWorkFlowParser.matcher_return matcher41 = null;
+        ComaWorkFlowParser.matcher_return matcher41 =null;
 
-        ComaWorkFlowParser.complexMatcher_return complexMatcher42 = null;
+        ComaWorkFlowParser.complexMatcher_return complexMatcher42 =null;
 
 
         Object CHAR_BRACE_LEFT31_tree=null;
@@ -1067,48 +1131,55 @@ public class ComaWorkFlowParser extends DebugParser {
         try { dbg.enterRule(getGrammarFileName(), "complexMatcher");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(75, 2);
+        dbg.location(75, 1);
 
         try {
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:75:16: ( CHAR_BRACE_LEFT ( RESOLUTION_2 CHAR_SEMICOLON ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:75:16: ( CHAR_BRACE_LEFT ( RESOLUTION_2 CHAR_SEMICOLON ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:78:5: CHAR_BRACE_LEFT ( RESOLUTION_2 CHAR_SEMICOLON ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:78:5: CHAR_BRACE_LEFT ( RESOLUTION_2 CHAR_SEMICOLON ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT
             {
             root_0 = (Object)adaptor.nil();
+
 
             dbg.location(78,5);
             CHAR_BRACE_LEFT31=(Token)match(input,CHAR_BRACE_LEFT,FOLLOW_CHAR_BRACE_LEFT_in_complexMatcher476); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_BRACE_LEFT31_tree = (Object)adaptor.create(CHAR_BRACE_LEFT31);
+            CHAR_BRACE_LEFT31_tree = 
+            (Object)adaptor.create(CHAR_BRACE_LEFT31)
+            ;
             adaptor.addChild(root_0, CHAR_BRACE_LEFT31_tree);
             }
             dbg.location(79,6);
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:79:6: ( RESOLUTION_2 CHAR_SEMICOLON ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION ) )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:79:6: ( RESOLUTION_2 CHAR_SEMICOLON ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION ) )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:79:8: RESOLUTION_2 CHAR_SEMICOLON ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:79:8: RESOLUTION_2 CHAR_SEMICOLON ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION )
             {
             dbg.location(79,8);
             RESOLUTION_232=(Token)match(input,RESOLUTION_2,FOLLOW_RESOLUTION_2_in_complexMatcher487); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            RESOLUTION_232_tree = (Object)adaptor.create(RESOLUTION_232);
+            RESOLUTION_232_tree = 
+            (Object)adaptor.create(RESOLUTION_232)
+            ;
             adaptor.addChild(root_0, RESOLUTION_232_tree);
             }
             dbg.location(80,7);
             CHAR_SEMICOLON33=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_complexMatcher496); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_SEMICOLON33_tree = (Object)adaptor.create(CHAR_SEMICOLON33);
+            CHAR_SEMICOLON33_tree = 
+            (Object)adaptor.create(CHAR_SEMICOLON33)
+            ;
             adaptor.addChild(root_0, CHAR_SEMICOLON33_tree);
             }
             dbg.location(81,7);
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:81:7: ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:81:7: ( ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:82:8: ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:82:8: ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) ) CHAR_SEMICOLON SETCOMBINATION
             {
             dbg.location(82,8);
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:82:8: ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:82:8: ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) | ( matcher | complexMatcher ) )
             int alt13=2;
             try { dbg.enterSubRule(13);
             try { dbg.enterDecision(13, decisionCanBacktrack[13]);
@@ -1131,6 +1202,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                     dbg.recognitionException(nvae);
                     throw nvae;
+
                 }
             }
             else {
@@ -1140,6 +1212,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                 dbg.recognitionException(nvae);
                 throw nvae;
+
             }
             } finally {dbg.exitDecision(13);}
 
@@ -1147,16 +1220,16 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:9: ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:9: ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) )
                     {
                     dbg.location(83,9);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:9: ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:9: ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:11: ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:11: ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination )
                     {
                     dbg.location(83,11);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:11: ( matcher | complexMatcher )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:11: ( matcher | complexMatcher )
                     int alt9=2;
                     try { dbg.enterSubRule(9);
                     try { dbg.enterDecision(9, decisionCanBacktrack[9]);
@@ -1179,6 +1252,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                             dbg.recognitionException(nvae);
                             throw nvae;
+
                         }
                     }
                     else {
@@ -1188,6 +1262,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                         dbg.recognitionException(nvae);
                         throw nvae;
+
                     }
                     } finally {dbg.exitDecision(9);}
 
@@ -1195,7 +1270,7 @@ public class ComaWorkFlowParser extends DebugParser {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:12: matcher
+                            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:12: matcher
                             {
                             dbg.location(83,12);
                             pushFollow(FOLLOW_matcher_in_complexMatcher529);
@@ -1210,7 +1285,7 @@ public class ComaWorkFlowParser extends DebugParser {
                         case 2 :
                             dbg.enterAlt(2);
 
-                            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:22: complexMatcher
+                            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:22: complexMatcher
                             {
                             dbg.location(83,22);
                             pushFollow(FOLLOW_complexMatcher_in_complexMatcher533);
@@ -1227,13 +1302,13 @@ public class ComaWorkFlowParser extends DebugParser {
                     } finally {dbg.exitSubRule(9);}
 
                     dbg.location(83,38);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:38: ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:38: ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:39: ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:39: ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination
                     {
                     dbg.location(83,39);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:39: ( CHAR_COMMA ( matcher | complexMatcher ) )+
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:39: ( CHAR_COMMA ( matcher | complexMatcher ) )+
                     int cnt11=0;
                     try { dbg.enterSubRule(11);
 
@@ -1255,16 +1330,18 @@ public class ComaWorkFlowParser extends DebugParser {
                     	case 1 :
                     	    dbg.enterAlt(1);
 
-                    	    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:40: CHAR_COMMA ( matcher | complexMatcher )
+                    	    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:40: CHAR_COMMA ( matcher | complexMatcher )
                     	    {
                     	    dbg.location(83,40);
                     	    CHAR_COMMA36=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_complexMatcher538); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    CHAR_COMMA36_tree = (Object)adaptor.create(CHAR_COMMA36);
+                    	    CHAR_COMMA36_tree = 
+                    	    (Object)adaptor.create(CHAR_COMMA36)
+                    	    ;
                     	    adaptor.addChild(root_0, CHAR_COMMA36_tree);
                     	    }
                     	    dbg.location(83,51);
-                    	    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:51: ( matcher | complexMatcher )
+                    	    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:51: ( matcher | complexMatcher )
                     	    int alt10=2;
                     	    try { dbg.enterSubRule(10);
                     	    try { dbg.enterDecision(10, decisionCanBacktrack[10]);
@@ -1287,6 +1364,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                     	            dbg.recognitionException(nvae);
                     	            throw nvae;
+
                     	        }
                     	    }
                     	    else {
@@ -1296,6 +1374,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                     	        dbg.recognitionException(nvae);
                     	        throw nvae;
+
                     	    }
                     	    } finally {dbg.exitDecision(10);}
 
@@ -1303,7 +1382,7 @@ public class ComaWorkFlowParser extends DebugParser {
                     	        case 1 :
                     	            dbg.enterAlt(1);
 
-                    	            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:52: matcher
+                    	            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:52: matcher
                     	            {
                     	            dbg.location(83,52);
                     	            pushFollow(FOLLOW_matcher_in_complexMatcher541);
@@ -1318,7 +1397,7 @@ public class ComaWorkFlowParser extends DebugParser {
                     	        case 2 :
                     	            dbg.enterAlt(2);
 
-                    	            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:62: complexMatcher
+                    	            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:62: complexMatcher
                     	            {
                     	            dbg.location(83,62);
                     	            pushFollow(FOLLOW_complexMatcher_in_complexMatcher545);
@@ -1354,7 +1433,9 @@ public class ComaWorkFlowParser extends DebugParser {
                     dbg.location(83,80);
                     CHAR_SEMICOLON39=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_complexMatcher550); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_SEMICOLON39_tree = (Object)adaptor.create(CHAR_SEMICOLON39);
+                    CHAR_SEMICOLON39_tree = 
+                    (Object)adaptor.create(CHAR_SEMICOLON39)
+                    ;
                     adaptor.addChild(root_0, CHAR_SEMICOLON39_tree);
                     }
                     dbg.location(83,95);
@@ -1376,10 +1457,10 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:85:9: ( matcher | complexMatcher )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:85:9: ( matcher | complexMatcher )
                     {
                     dbg.location(85,9);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:85:9: ( matcher | complexMatcher )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:85:9: ( matcher | complexMatcher )
                     int alt12=2;
                     try { dbg.enterSubRule(12);
                     try { dbg.enterDecision(12, decisionCanBacktrack[12]);
@@ -1402,6 +1483,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                             dbg.recognitionException(nvae);
                             throw nvae;
+
                         }
                     }
                     else {
@@ -1411,6 +1493,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                         dbg.recognitionException(nvae);
                         throw nvae;
+
                     }
                     } finally {dbg.exitDecision(12);}
 
@@ -1418,7 +1501,7 @@ public class ComaWorkFlowParser extends DebugParser {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:85:10: matcher
+                            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:85:10: matcher
                             {
                             dbg.location(85,10);
                             pushFollow(FOLLOW_matcher_in_complexMatcher575);
@@ -1433,7 +1516,7 @@ public class ComaWorkFlowParser extends DebugParser {
                         case 2 :
                             dbg.enterAlt(2);
 
-                            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:85:20: complexMatcher
+                            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:85:20: complexMatcher
                             {
                             dbg.location(85,20);
                             pushFollow(FOLLOW_complexMatcher_in_complexMatcher579);
@@ -1459,13 +1542,17 @@ public class ComaWorkFlowParser extends DebugParser {
             dbg.location(87,8);
             CHAR_SEMICOLON43=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_complexMatcher601); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_SEMICOLON43_tree = (Object)adaptor.create(CHAR_SEMICOLON43);
+            CHAR_SEMICOLON43_tree = 
+            (Object)adaptor.create(CHAR_SEMICOLON43)
+            ;
             adaptor.addChild(root_0, CHAR_SEMICOLON43_tree);
             }
             dbg.location(87,23);
             SETCOMBINATION44=(Token)match(input,SETCOMBINATION,FOLLOW_SETCOMBINATION_in_complexMatcher603); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SETCOMBINATION44_tree = (Object)adaptor.create(SETCOMBINATION44);
+            SETCOMBINATION44_tree = 
+            (Object)adaptor.create(SETCOMBINATION44)
+            ;
             adaptor.addChild(root_0, SETCOMBINATION44_tree);
             }
 
@@ -1477,13 +1564,16 @@ public class ComaWorkFlowParser extends DebugParser {
             dbg.location(90,5);
             CHAR_BRACE_RIGHT45=(Token)match(input,CHAR_BRACE_RIGHT,FOLLOW_CHAR_BRACE_RIGHT_in_complexMatcher627); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_BRACE_RIGHT45_tree = (Object)adaptor.create(CHAR_BRACE_RIGHT45);
+            CHAR_BRACE_RIGHT45_tree = 
+            (Object)adaptor.create(CHAR_BRACE_RIGHT45)
+            ;
             adaptor.addChild(root_0, CHAR_BRACE_RIGHT45_tree);
             }
 
             }
 
             retval.stop = input.LT(-1);
+
 
             if ( state.backtracking==0 ) {
 
@@ -1497,9 +1587,11 @@ public class ComaWorkFlowParser extends DebugParser {
     	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 
         }
+
         finally {
+        	// do for sure before leaving
         }
-        dbg.location(90, 21);
+        dbg.location(90, 20);
 
         }
         finally {
@@ -1512,16 +1604,19 @@ public class ComaWorkFlowParser extends DebugParser {
     }
     // $ANTLR end "complexMatcher"
 
+
     public static class matcher_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
+
     // $ANTLR start "matcher"
-    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:95:2: matcher : CHAR_BRACE_LEFT ( RESOLUTION_3 CHAR_SEMICOLON ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT ;
+    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:95:2: matcher : CHAR_BRACE_LEFT ( RESOLUTION_3 CHAR_SEMICOLON ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT ;
     public final ComaWorkFlowParser.matcher_return matcher() throws RecognitionException {
         ComaWorkFlowParser.matcher_return retval = new ComaWorkFlowParser.matcher_return();
         retval.start = input.LT(1);
+
 
         Object root_0 = null;
 
@@ -1536,7 +1631,7 @@ public class ComaWorkFlowParser extends DebugParser {
         Token CHAR_SEMICOLON55=null;
         Token SETCOMBINATION56=null;
         Token CHAR_BRACE_RIGHT57=null;
-        ComaWorkFlowParser.similarityCombination_return similarityCombination54 = null;
+        ComaWorkFlowParser.similarityCombination_return similarityCombination54 =null;
 
 
         Object CHAR_BRACE_LEFT46_tree=null;
@@ -1554,48 +1649,55 @@ public class ComaWorkFlowParser extends DebugParser {
         try { dbg.enterRule(getGrammarFileName(), "matcher");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(95, 2);
+        dbg.location(95, 1);
 
         try {
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:95:10: ( CHAR_BRACE_LEFT ( RESOLUTION_3 CHAR_SEMICOLON ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:95:10: ( CHAR_BRACE_LEFT ( RESOLUTION_3 CHAR_SEMICOLON ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:95:13: CHAR_BRACE_LEFT ( RESOLUTION_3 CHAR_SEMICOLON ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:95:13: CHAR_BRACE_LEFT ( RESOLUTION_3 CHAR_SEMICOLON ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION ) ) CHAR_BRACE_RIGHT
             {
             root_0 = (Object)adaptor.nil();
+
 
             dbg.location(95,13);
             CHAR_BRACE_LEFT46=(Token)match(input,CHAR_BRACE_LEFT,FOLLOW_CHAR_BRACE_LEFT_in_matcher644); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_BRACE_LEFT46_tree = (Object)adaptor.create(CHAR_BRACE_LEFT46);
+            CHAR_BRACE_LEFT46_tree = 
+            (Object)adaptor.create(CHAR_BRACE_LEFT46)
+            ;
             adaptor.addChild(root_0, CHAR_BRACE_LEFT46_tree);
             }
             dbg.location(96,6);
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:96:6: ( RESOLUTION_3 CHAR_SEMICOLON ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION ) )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:96:6: ( RESOLUTION_3 CHAR_SEMICOLON ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION ) )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:96:8: RESOLUTION_3 CHAR_SEMICOLON ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:96:8: RESOLUTION_3 CHAR_SEMICOLON ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION )
             {
             dbg.location(96,8);
             RESOLUTION_347=(Token)match(input,RESOLUTION_3,FOLLOW_RESOLUTION_3_in_matcher655); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            RESOLUTION_347_tree = (Object)adaptor.create(RESOLUTION_347);
+            RESOLUTION_347_tree = 
+            (Object)adaptor.create(RESOLUTION_347)
+            ;
             adaptor.addChild(root_0, RESOLUTION_347_tree);
             }
             dbg.location(97,7);
             CHAR_SEMICOLON48=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_matcher664); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_SEMICOLON48_tree = (Object)adaptor.create(CHAR_SEMICOLON48);
+            CHAR_SEMICOLON48_tree = 
+            (Object)adaptor.create(CHAR_SEMICOLON48)
+            ;
             adaptor.addChild(root_0, CHAR_SEMICOLON48_tree);
             }
             dbg.location(98,7);
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:98:7: ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:98:7: ( ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:99:8: ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:99:8: ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) ) CHAR_SEMICOLON SETCOMBINATION
             {
             dbg.location(99,8);
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:99:8: ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:99:8: ( SIMMEASURE | ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) ) )
             int alt15=2;
             try { dbg.enterSubRule(15);
             try { dbg.enterDecision(15, decisionCanBacktrack[15]);
@@ -1618,6 +1720,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                     dbg.recognitionException(nvae);
                     throw nvae;
+
                 }
             }
             else {
@@ -1627,6 +1730,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                 dbg.recognitionException(nvae);
                 throw nvae;
+
             }
             } finally {dbg.exitDecision(15);}
 
@@ -1634,12 +1738,14 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:100:9: SIMMEASURE
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:100:9: SIMMEASURE
                     {
                     dbg.location(100,9);
                     SIMMEASURE49=(Token)match(input,SIMMEASURE,FOLLOW_SIMMEASURE_in_matcher693); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SIMMEASURE49_tree = (Object)adaptor.create(SIMMEASURE49);
+                    SIMMEASURE49_tree = 
+                    (Object)adaptor.create(SIMMEASURE49)
+                    ;
                     adaptor.addChild(root_0, SIMMEASURE49_tree);
                     }
 
@@ -1648,28 +1754,30 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:102:9: ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:102:9: ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) )
                     {
                     dbg.location(102,9);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:102:9: ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:102:9: ( SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination ) )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:102:10: SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:102:10: SIMMEASURE ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination )
                     {
                     dbg.location(102,10);
                     SIMMEASURE50=(Token)match(input,SIMMEASURE,FOLLOW_SIMMEASURE_in_matcher716); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SIMMEASURE50_tree = (Object)adaptor.create(SIMMEASURE50);
+                    SIMMEASURE50_tree = 
+                    (Object)adaptor.create(SIMMEASURE50)
+                    ;
                     adaptor.addChild(root_0, SIMMEASURE50_tree);
                     }
                     dbg.location(102,21);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:102:21: ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:102:21: ( ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:102:22: ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:102:22: ( CHAR_COMMA SIMMEASURE )+ CHAR_SEMICOLON similarityCombination
                     {
                     dbg.location(102,22);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:102:22: ( CHAR_COMMA SIMMEASURE )+
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:102:22: ( CHAR_COMMA SIMMEASURE )+
                     int cnt14=0;
                     try { dbg.enterSubRule(14);
 
@@ -1691,18 +1799,22 @@ public class ComaWorkFlowParser extends DebugParser {
                     	case 1 :
                     	    dbg.enterAlt(1);
 
-                    	    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:102:23: CHAR_COMMA SIMMEASURE
+                    	    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:102:23: CHAR_COMMA SIMMEASURE
                     	    {
                     	    dbg.location(102,23);
                     	    CHAR_COMMA51=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_matcher720); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    CHAR_COMMA51_tree = (Object)adaptor.create(CHAR_COMMA51);
+                    	    CHAR_COMMA51_tree = 
+                    	    (Object)adaptor.create(CHAR_COMMA51)
+                    	    ;
                     	    adaptor.addChild(root_0, CHAR_COMMA51_tree);
                     	    }
                     	    dbg.location(102,34);
                     	    SIMMEASURE52=(Token)match(input,SIMMEASURE,FOLLOW_SIMMEASURE_in_matcher722); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    SIMMEASURE52_tree = (Object)adaptor.create(SIMMEASURE52);
+                    	    SIMMEASURE52_tree = 
+                    	    (Object)adaptor.create(SIMMEASURE52)
+                    	    ;
                     	    adaptor.addChild(root_0, SIMMEASURE52_tree);
                     	    }
 
@@ -1725,7 +1837,9 @@ public class ComaWorkFlowParser extends DebugParser {
                     dbg.location(102,47);
                     CHAR_SEMICOLON53=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_matcher726); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_SEMICOLON53_tree = (Object)adaptor.create(CHAR_SEMICOLON53);
+                    CHAR_SEMICOLON53_tree = 
+                    (Object)adaptor.create(CHAR_SEMICOLON53)
+                    ;
                     adaptor.addChild(root_0, CHAR_SEMICOLON53_tree);
                     }
                     dbg.location(102,62);
@@ -1751,13 +1865,17 @@ public class ComaWorkFlowParser extends DebugParser {
             dbg.location(104,7);
             CHAR_SEMICOLON55=(Token)match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_matcher748); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_SEMICOLON55_tree = (Object)adaptor.create(CHAR_SEMICOLON55);
+            CHAR_SEMICOLON55_tree = 
+            (Object)adaptor.create(CHAR_SEMICOLON55)
+            ;
             adaptor.addChild(root_0, CHAR_SEMICOLON55_tree);
             }
             dbg.location(104,22);
             SETCOMBINATION56=(Token)match(input,SETCOMBINATION,FOLLOW_SETCOMBINATION_in_matcher750); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SETCOMBINATION56_tree = (Object)adaptor.create(SETCOMBINATION56);
+            SETCOMBINATION56_tree = 
+            (Object)adaptor.create(SETCOMBINATION56)
+            ;
             adaptor.addChild(root_0, SETCOMBINATION56_tree);
             }
 
@@ -1769,13 +1887,16 @@ public class ComaWorkFlowParser extends DebugParser {
             dbg.location(107,5);
             CHAR_BRACE_RIGHT57=(Token)match(input,CHAR_BRACE_RIGHT,FOLLOW_CHAR_BRACE_RIGHT_in_matcher776); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_BRACE_RIGHT57_tree = (Object)adaptor.create(CHAR_BRACE_RIGHT57);
+            CHAR_BRACE_RIGHT57_tree = 
+            (Object)adaptor.create(CHAR_BRACE_RIGHT57)
+            ;
             adaptor.addChild(root_0, CHAR_BRACE_RIGHT57_tree);
             }
 
             }
 
             retval.stop = input.LT(-1);
+
 
             if ( state.backtracking==0 ) {
 
@@ -1789,9 +1910,11 @@ public class ComaWorkFlowParser extends DebugParser {
     	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 
         }
+
         finally {
+        	// do for sure before leaving
         }
-        dbg.location(107, 21);
+        dbg.location(107, 20);
 
         }
         finally {
@@ -1804,16 +1927,19 @@ public class ComaWorkFlowParser extends DebugParser {
     }
     // $ANTLR end "matcher"
 
+
     public static class reuse_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
+
     // $ANTLR start "reuse"
-    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:110:2: reuse : ( DIGIT | V2 ) CHAR_COMMA ( DIGIT | V2 ) CHAR_COMMA BOOLEAN CHAR_COMMA COMPOSITION CHAR_COMMA SIMCOMBINATION1 CHAR_COMMA BOOLEAN ;
+    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:110:2: reuse : ( DIGIT | V2 ) CHAR_COMMA ( DIGIT | V2 ) CHAR_COMMA BOOLEAN CHAR_COMMA COMPOSITION CHAR_COMMA SIMCOMBINATION1 CHAR_COMMA BOOLEAN ;
     public final ComaWorkFlowParser.reuse_return reuse() throws RecognitionException {
         ComaWorkFlowParser.reuse_return retval = new ComaWorkFlowParser.reuse_return();
         retval.start = input.LT(1);
+
 
         Object root_0 = null;
 
@@ -1844,22 +1970,27 @@ public class ComaWorkFlowParser extends DebugParser {
         try { dbg.enterRule(getGrammarFileName(), "reuse");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(110, 2);
+        dbg.location(110, 1);
 
         try {
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:110:8: ( ( DIGIT | V2 ) CHAR_COMMA ( DIGIT | V2 ) CHAR_COMMA BOOLEAN CHAR_COMMA COMPOSITION CHAR_COMMA SIMCOMBINATION1 CHAR_COMMA BOOLEAN )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:110:8: ( ( DIGIT | V2 ) CHAR_COMMA ( DIGIT | V2 ) CHAR_COMMA BOOLEAN CHAR_COMMA COMPOSITION CHAR_COMMA SIMCOMBINATION1 CHAR_COMMA BOOLEAN )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:110:11: ( DIGIT | V2 ) CHAR_COMMA ( DIGIT | V2 ) CHAR_COMMA BOOLEAN CHAR_COMMA COMPOSITION CHAR_COMMA SIMCOMBINATION1 CHAR_COMMA BOOLEAN
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:110:11: ( DIGIT | V2 ) CHAR_COMMA ( DIGIT | V2 ) CHAR_COMMA BOOLEAN CHAR_COMMA COMPOSITION CHAR_COMMA SIMCOMBINATION1 CHAR_COMMA BOOLEAN
             {
             root_0 = (Object)adaptor.nil();
 
+
             dbg.location(110,11);
             set58=(Token)input.LT(1);
-            if ( (input.LA(1)>=DIGIT && input.LA(1)<=V2) ) {
+
+            if ( input.LA(1)==DIGIT||input.LA(1)==V2 ) {
                 input.consume();
-                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set58));
-                state.errorRecovery=false;state.failed=false;
+                if ( state.backtracking==0 ) adaptor.addChild(root_0, 
+                (Object)adaptor.create(set58)
+                );
+                state.errorRecovery=false;
+                state.failed=false;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
@@ -1871,15 +2002,21 @@ public class ComaWorkFlowParser extends DebugParser {
             dbg.location(110,24);
             CHAR_COMMA59=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_reuse798); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_COMMA59_tree = (Object)adaptor.create(CHAR_COMMA59);
+            CHAR_COMMA59_tree = 
+            (Object)adaptor.create(CHAR_COMMA59)
+            ;
             adaptor.addChild(root_0, CHAR_COMMA59_tree);
             }
             dbg.location(110,35);
             set60=(Token)input.LT(1);
-            if ( (input.LA(1)>=DIGIT && input.LA(1)<=V2) ) {
+
+            if ( input.LA(1)==DIGIT||input.LA(1)==V2 ) {
                 input.consume();
-                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set60));
-                state.errorRecovery=false;state.failed=false;
+                if ( state.backtracking==0 ) adaptor.addChild(root_0, 
+                (Object)adaptor.create(set60)
+                );
+                state.errorRecovery=false;
+                state.failed=false;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
@@ -1891,55 +2028,72 @@ public class ComaWorkFlowParser extends DebugParser {
             dbg.location(110,48);
             CHAR_COMMA61=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_reuse808); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_COMMA61_tree = (Object)adaptor.create(CHAR_COMMA61);
+            CHAR_COMMA61_tree = 
+            (Object)adaptor.create(CHAR_COMMA61)
+            ;
             adaptor.addChild(root_0, CHAR_COMMA61_tree);
             }
             dbg.location(110,59);
             BOOLEAN62=(Token)match(input,BOOLEAN,FOLLOW_BOOLEAN_in_reuse810); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            BOOLEAN62_tree = (Object)adaptor.create(BOOLEAN62);
+            BOOLEAN62_tree = 
+            (Object)adaptor.create(BOOLEAN62)
+            ;
             adaptor.addChild(root_0, BOOLEAN62_tree);
             }
             dbg.location(110,67);
             CHAR_COMMA63=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_reuse812); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_COMMA63_tree = (Object)adaptor.create(CHAR_COMMA63);
+            CHAR_COMMA63_tree = 
+            (Object)adaptor.create(CHAR_COMMA63)
+            ;
             adaptor.addChild(root_0, CHAR_COMMA63_tree);
             }
             dbg.location(110,78);
             COMPOSITION64=(Token)match(input,COMPOSITION,FOLLOW_COMPOSITION_in_reuse814); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            COMPOSITION64_tree = (Object)adaptor.create(COMPOSITION64);
+            COMPOSITION64_tree = 
+            (Object)adaptor.create(COMPOSITION64)
+            ;
             adaptor.addChild(root_0, COMPOSITION64_tree);
             }
             dbg.location(110,90);
             CHAR_COMMA65=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_reuse816); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_COMMA65_tree = (Object)adaptor.create(CHAR_COMMA65);
+            CHAR_COMMA65_tree = 
+            (Object)adaptor.create(CHAR_COMMA65)
+            ;
             adaptor.addChild(root_0, CHAR_COMMA65_tree);
             }
             dbg.location(110,101);
             SIMCOMBINATION166=(Token)match(input,SIMCOMBINATION1,FOLLOW_SIMCOMBINATION1_in_reuse818); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            SIMCOMBINATION166_tree = (Object)adaptor.create(SIMCOMBINATION166);
+            SIMCOMBINATION166_tree = 
+            (Object)adaptor.create(SIMCOMBINATION166)
+            ;
             adaptor.addChild(root_0, SIMCOMBINATION166_tree);
             }
             dbg.location(110,117);
             CHAR_COMMA67=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_reuse820); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_COMMA67_tree = (Object)adaptor.create(CHAR_COMMA67);
+            CHAR_COMMA67_tree = 
+            (Object)adaptor.create(CHAR_COMMA67)
+            ;
             adaptor.addChild(root_0, CHAR_COMMA67_tree);
             }
             dbg.location(110,128);
             BOOLEAN68=(Token)match(input,BOOLEAN,FOLLOW_BOOLEAN_in_reuse822); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            BOOLEAN68_tree = (Object)adaptor.create(BOOLEAN68);
+            BOOLEAN68_tree = 
+            (Object)adaptor.create(BOOLEAN68)
+            ;
             adaptor.addChild(root_0, BOOLEAN68_tree);
             }
 
             }
 
             retval.stop = input.LT(-1);
+
 
             if ( state.backtracking==0 ) {
 
@@ -1953,9 +2107,11 @@ public class ComaWorkFlowParser extends DebugParser {
     	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 
         }
+
         finally {
+        	// do for sure before leaving
         }
-        dbg.location(110, 135);
+        dbg.location(110, 134);
 
         }
         finally {
@@ -1968,16 +2124,19 @@ public class ComaWorkFlowParser extends DebugParser {
     }
     // $ANTLR end "reuse"
 
+
     public static class selection_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
+
     // $ANTLR start "selection"
-    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:119:2: selection : CHAR_BRACE_LEFT DIRECTION CHAR_COMMA selectionParameter CHAR_BRACE_RIGHT ;
+    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:119:2: selection : CHAR_BRACE_LEFT DIRECTION CHAR_COMMA selectionParameter CHAR_BRACE_RIGHT ;
     public final ComaWorkFlowParser.selection_return selection() throws RecognitionException {
         ComaWorkFlowParser.selection_return retval = new ComaWorkFlowParser.selection_return();
         retval.start = input.LT(1);
+
 
         Object root_0 = null;
 
@@ -1985,7 +2144,7 @@ public class ComaWorkFlowParser extends DebugParser {
         Token DIRECTION70=null;
         Token CHAR_COMMA71=null;
         Token CHAR_BRACE_RIGHT73=null;
-        ComaWorkFlowParser.selectionParameter_return selectionParameter72 = null;
+        ComaWorkFlowParser.selectionParameter_return selectionParameter72 =null;
 
 
         Object CHAR_BRACE_LEFT69_tree=null;
@@ -1996,32 +2155,39 @@ public class ComaWorkFlowParser extends DebugParser {
         try { dbg.enterRule(getGrammarFileName(), "selection");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(119, 2);
+        dbg.location(119, 1);
 
         try {
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:119:12: ( CHAR_BRACE_LEFT DIRECTION CHAR_COMMA selectionParameter CHAR_BRACE_RIGHT )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:119:12: ( CHAR_BRACE_LEFT DIRECTION CHAR_COMMA selectionParameter CHAR_BRACE_RIGHT )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:119:15: CHAR_BRACE_LEFT DIRECTION CHAR_COMMA selectionParameter CHAR_BRACE_RIGHT
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:119:15: CHAR_BRACE_LEFT DIRECTION CHAR_COMMA selectionParameter CHAR_BRACE_RIGHT
             {
             root_0 = (Object)adaptor.nil();
+
 
             dbg.location(119,15);
             CHAR_BRACE_LEFT69=(Token)match(input,CHAR_BRACE_LEFT,FOLLOW_CHAR_BRACE_LEFT_in_selection844); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_BRACE_LEFT69_tree = (Object)adaptor.create(CHAR_BRACE_LEFT69);
+            CHAR_BRACE_LEFT69_tree = 
+            (Object)adaptor.create(CHAR_BRACE_LEFT69)
+            ;
             adaptor.addChild(root_0, CHAR_BRACE_LEFT69_tree);
             }
             dbg.location(119,31);
             DIRECTION70=(Token)match(input,DIRECTION,FOLLOW_DIRECTION_in_selection846); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            DIRECTION70_tree = (Object)adaptor.create(DIRECTION70);
+            DIRECTION70_tree = 
+            (Object)adaptor.create(DIRECTION70)
+            ;
             adaptor.addChild(root_0, DIRECTION70_tree);
             }
             dbg.location(119,41);
             CHAR_COMMA71=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_selection848); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_COMMA71_tree = (Object)adaptor.create(CHAR_COMMA71);
+            CHAR_COMMA71_tree = 
+            (Object)adaptor.create(CHAR_COMMA71)
+            ;
             adaptor.addChild(root_0, CHAR_COMMA71_tree);
             }
             dbg.location(119,52);
@@ -2034,13 +2200,16 @@ public class ComaWorkFlowParser extends DebugParser {
             dbg.location(119,71);
             CHAR_BRACE_RIGHT73=(Token)match(input,CHAR_BRACE_RIGHT,FOLLOW_CHAR_BRACE_RIGHT_in_selection852); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            CHAR_BRACE_RIGHT73_tree = (Object)adaptor.create(CHAR_BRACE_RIGHT73);
+            CHAR_BRACE_RIGHT73_tree = 
+            (Object)adaptor.create(CHAR_BRACE_RIGHT73)
+            ;
             adaptor.addChild(root_0, CHAR_BRACE_RIGHT73_tree);
             }
 
             }
 
             retval.stop = input.LT(-1);
+
 
             if ( state.backtracking==0 ) {
 
@@ -2054,9 +2223,11 @@ public class ComaWorkFlowParser extends DebugParser {
     	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 
         }
+
         finally {
+        	// do for sure before leaving
         }
-        dbg.location(119, 87);
+        dbg.location(119, 86);
 
         }
         finally {
@@ -2069,16 +2240,19 @@ public class ComaWorkFlowParser extends DebugParser {
     }
     // $ANTLR end "selection"
 
+
     public static class selectionParameter_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
+
     // $ANTLR start "selectionParameter"
-    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:121:2: selectionParameter : ( ( SELECTION_THRESHOLD CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT ) | ( SELECTION_MAXDELTA CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT ) | ( SELECTION_MAXN CHAR_BRACE_LEFT ( DIGIT | V2 ) CHAR_BRACE_RIGHT ) | ( SELECTION_MULTIPLE CHAR_BRACE_LEFT ( DIGIT )+ CHAR_COMMA V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT ) );
+    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:121:2: selectionParameter : ( ( SELECTION_THRESHOLD CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT ) | ( SELECTION_MAXDELTA CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT ) | ( SELECTION_MAXN CHAR_BRACE_LEFT ( DIGIT | V2 ) CHAR_BRACE_RIGHT ) | ( SELECTION_MULTIPLE CHAR_BRACE_LEFT ( DIGIT )+ CHAR_COMMA V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT ) );
     public final ComaWorkFlowParser.selectionParameter_return selectionParameter() throws RecognitionException {
         ComaWorkFlowParser.selectionParameter_return retval = new ComaWorkFlowParser.selectionParameter_return();
         retval.start = input.LT(1);
+
 
         Object root_0 = null;
 
@@ -2127,10 +2301,10 @@ public class ComaWorkFlowParser extends DebugParser {
         try { dbg.enterRule(getGrammarFileName(), "selectionParameter");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(121, 2);
+        dbg.location(121, 1);
 
         try {
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:121:21: ( ( SELECTION_THRESHOLD CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT ) | ( SELECTION_MAXDELTA CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT ) | ( SELECTION_MAXN CHAR_BRACE_LEFT ( DIGIT | V2 ) CHAR_BRACE_RIGHT ) | ( SELECTION_MULTIPLE CHAR_BRACE_LEFT ( DIGIT )+ CHAR_COMMA V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT ) )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:121:21: ( ( SELECTION_THRESHOLD CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT ) | ( SELECTION_MAXDELTA CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT ) | ( SELECTION_MAXN CHAR_BRACE_LEFT ( DIGIT | V2 ) CHAR_BRACE_RIGHT ) | ( SELECTION_MULTIPLE CHAR_BRACE_LEFT ( DIGIT )+ CHAR_COMMA V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT ) )
             int alt17=4;
             try { dbg.enterDecision(17, decisionCanBacktrack[17]);
 
@@ -2162,6 +2336,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                 dbg.recognitionException(nvae);
                 throw nvae;
+
             }
 
             } finally {dbg.exitDecision(17);}
@@ -2170,38 +2345,47 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:121:23: ( SELECTION_THRESHOLD CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:121:23: ( SELECTION_THRESHOLD CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT )
                     {
                     root_0 = (Object)adaptor.nil();
 
+
                     dbg.location(121,23);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:121:23: ( SELECTION_THRESHOLD CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:121:23: ( SELECTION_THRESHOLD CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:121:25: SELECTION_THRESHOLD CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:121:25: SELECTION_THRESHOLD CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT
                     {
                     dbg.location(121,25);
                     SELECTION_THRESHOLD74=(Token)match(input,SELECTION_THRESHOLD,FOLLOW_SELECTION_THRESHOLD_in_selectionParameter864); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SELECTION_THRESHOLD74_tree = (Object)adaptor.create(SELECTION_THRESHOLD74);
+                    SELECTION_THRESHOLD74_tree = 
+                    (Object)adaptor.create(SELECTION_THRESHOLD74)
+                    ;
                     adaptor.addChild(root_0, SELECTION_THRESHOLD74_tree);
                     }
                     dbg.location(121,45);
                     CHAR_BRACE_LEFT75=(Token)match(input,CHAR_BRACE_LEFT,FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter866); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_BRACE_LEFT75_tree = (Object)adaptor.create(CHAR_BRACE_LEFT75);
+                    CHAR_BRACE_LEFT75_tree = 
+                    (Object)adaptor.create(CHAR_BRACE_LEFT75)
+                    ;
                     adaptor.addChild(root_0, CHAR_BRACE_LEFT75_tree);
                     }
                     dbg.location(121,61);
                     V176=(Token)match(input,V1,FOLLOW_V1_in_selectionParameter868); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    V176_tree = (Object)adaptor.create(V176);
+                    V176_tree = 
+                    (Object)adaptor.create(V176)
+                    ;
                     adaptor.addChild(root_0, V176_tree);
                     }
                     dbg.location(121,64);
                     CHAR_BRACE_RIGHT77=(Token)match(input,CHAR_BRACE_RIGHT,FOLLOW_CHAR_BRACE_RIGHT_in_selectionParameter870); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_BRACE_RIGHT77_tree = (Object)adaptor.create(CHAR_BRACE_RIGHT77);
+                    CHAR_BRACE_RIGHT77_tree = 
+                    (Object)adaptor.create(CHAR_BRACE_RIGHT77)
+                    ;
                     adaptor.addChild(root_0, CHAR_BRACE_RIGHT77_tree);
                     }
 
@@ -2213,38 +2397,47 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:122:5: ( SELECTION_MAXDELTA CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:122:5: ( SELECTION_MAXDELTA CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT )
                     {
                     root_0 = (Object)adaptor.nil();
 
+
                     dbg.location(122,5);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:122:5: ( SELECTION_MAXDELTA CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:122:5: ( SELECTION_MAXDELTA CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:122:7: SELECTION_MAXDELTA CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:122:7: SELECTION_MAXDELTA CHAR_BRACE_LEFT V1 CHAR_BRACE_RIGHT
                     {
                     dbg.location(122,7);
                     SELECTION_MAXDELTA78=(Token)match(input,SELECTION_MAXDELTA,FOLLOW_SELECTION_MAXDELTA_in_selectionParameter882); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SELECTION_MAXDELTA78_tree = (Object)adaptor.create(SELECTION_MAXDELTA78);
+                    SELECTION_MAXDELTA78_tree = 
+                    (Object)adaptor.create(SELECTION_MAXDELTA78)
+                    ;
                     adaptor.addChild(root_0, SELECTION_MAXDELTA78_tree);
                     }
                     dbg.location(122,26);
                     CHAR_BRACE_LEFT79=(Token)match(input,CHAR_BRACE_LEFT,FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter884); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_BRACE_LEFT79_tree = (Object)adaptor.create(CHAR_BRACE_LEFT79);
+                    CHAR_BRACE_LEFT79_tree = 
+                    (Object)adaptor.create(CHAR_BRACE_LEFT79)
+                    ;
                     adaptor.addChild(root_0, CHAR_BRACE_LEFT79_tree);
                     }
                     dbg.location(122,42);
                     V180=(Token)match(input,V1,FOLLOW_V1_in_selectionParameter886); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    V180_tree = (Object)adaptor.create(V180);
+                    V180_tree = 
+                    (Object)adaptor.create(V180)
+                    ;
                     adaptor.addChild(root_0, V180_tree);
                     }
                     dbg.location(122,45);
                     CHAR_BRACE_RIGHT81=(Token)match(input,CHAR_BRACE_RIGHT,FOLLOW_CHAR_BRACE_RIGHT_in_selectionParameter888); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_BRACE_RIGHT81_tree = (Object)adaptor.create(CHAR_BRACE_RIGHT81);
+                    CHAR_BRACE_RIGHT81_tree = 
+                    (Object)adaptor.create(CHAR_BRACE_RIGHT81)
+                    ;
                     adaptor.addChild(root_0, CHAR_BRACE_RIGHT81_tree);
                     }
 
@@ -2256,34 +2449,43 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:123:5: ( SELECTION_MAXN CHAR_BRACE_LEFT ( DIGIT | V2 ) CHAR_BRACE_RIGHT )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:123:5: ( SELECTION_MAXN CHAR_BRACE_LEFT ( DIGIT | V2 ) CHAR_BRACE_RIGHT )
                     {
                     root_0 = (Object)adaptor.nil();
 
+
                     dbg.location(123,5);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:123:5: ( SELECTION_MAXN CHAR_BRACE_LEFT ( DIGIT | V2 ) CHAR_BRACE_RIGHT )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:123:5: ( SELECTION_MAXN CHAR_BRACE_LEFT ( DIGIT | V2 ) CHAR_BRACE_RIGHT )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:123:7: SELECTION_MAXN CHAR_BRACE_LEFT ( DIGIT | V2 ) CHAR_BRACE_RIGHT
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:123:7: SELECTION_MAXN CHAR_BRACE_LEFT ( DIGIT | V2 ) CHAR_BRACE_RIGHT
                     {
                     dbg.location(123,7);
                     SELECTION_MAXN82=(Token)match(input,SELECTION_MAXN,FOLLOW_SELECTION_MAXN_in_selectionParameter900); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SELECTION_MAXN82_tree = (Object)adaptor.create(SELECTION_MAXN82);
+                    SELECTION_MAXN82_tree = 
+                    (Object)adaptor.create(SELECTION_MAXN82)
+                    ;
                     adaptor.addChild(root_0, SELECTION_MAXN82_tree);
                     }
                     dbg.location(123,22);
                     CHAR_BRACE_LEFT83=(Token)match(input,CHAR_BRACE_LEFT,FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter902); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_BRACE_LEFT83_tree = (Object)adaptor.create(CHAR_BRACE_LEFT83);
+                    CHAR_BRACE_LEFT83_tree = 
+                    (Object)adaptor.create(CHAR_BRACE_LEFT83)
+                    ;
                     adaptor.addChild(root_0, CHAR_BRACE_LEFT83_tree);
                     }
                     dbg.location(123,38);
                     set84=(Token)input.LT(1);
-                    if ( (input.LA(1)>=DIGIT && input.LA(1)<=V2) ) {
+
+                    if ( input.LA(1)==DIGIT||input.LA(1)==V2 ) {
                         input.consume();
-                        if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set84));
-                        state.errorRecovery=false;state.failed=false;
+                        if ( state.backtracking==0 ) adaptor.addChild(root_0, 
+                        (Object)adaptor.create(set84)
+                        );
+                        state.errorRecovery=false;
+                        state.failed=false;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
@@ -2295,7 +2497,9 @@ public class ComaWorkFlowParser extends DebugParser {
                     dbg.location(123,51);
                     CHAR_BRACE_RIGHT85=(Token)match(input,CHAR_BRACE_RIGHT,FOLLOW_CHAR_BRACE_RIGHT_in_selectionParameter912); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_BRACE_RIGHT85_tree = (Object)adaptor.create(CHAR_BRACE_RIGHT85);
+                    CHAR_BRACE_RIGHT85_tree = 
+                    (Object)adaptor.create(CHAR_BRACE_RIGHT85)
+                    ;
                     adaptor.addChild(root_0, CHAR_BRACE_RIGHT85_tree);
                     }
 
@@ -2307,30 +2511,35 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 4 :
                     dbg.enterAlt(4);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:124:5: ( SELECTION_MULTIPLE CHAR_BRACE_LEFT ( DIGIT )+ CHAR_COMMA V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:124:5: ( SELECTION_MULTIPLE CHAR_BRACE_LEFT ( DIGIT )+ CHAR_COMMA V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT )
                     {
                     root_0 = (Object)adaptor.nil();
 
+
                     dbg.location(124,5);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:124:5: ( SELECTION_MULTIPLE CHAR_BRACE_LEFT ( DIGIT )+ CHAR_COMMA V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:124:5: ( SELECTION_MULTIPLE CHAR_BRACE_LEFT ( DIGIT )+ CHAR_COMMA V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:124:7: SELECTION_MULTIPLE CHAR_BRACE_LEFT ( DIGIT )+ CHAR_COMMA V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:124:7: SELECTION_MULTIPLE CHAR_BRACE_LEFT ( DIGIT )+ CHAR_COMMA V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT
                     {
                     dbg.location(124,7);
                     SELECTION_MULTIPLE86=(Token)match(input,SELECTION_MULTIPLE,FOLLOW_SELECTION_MULTIPLE_in_selectionParameter924); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SELECTION_MULTIPLE86_tree = (Object)adaptor.create(SELECTION_MULTIPLE86);
+                    SELECTION_MULTIPLE86_tree = 
+                    (Object)adaptor.create(SELECTION_MULTIPLE86)
+                    ;
                     adaptor.addChild(root_0, SELECTION_MULTIPLE86_tree);
                     }
                     dbg.location(124,26);
                     CHAR_BRACE_LEFT87=(Token)match(input,CHAR_BRACE_LEFT,FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter926); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_BRACE_LEFT87_tree = (Object)adaptor.create(CHAR_BRACE_LEFT87);
+                    CHAR_BRACE_LEFT87_tree = 
+                    (Object)adaptor.create(CHAR_BRACE_LEFT87)
+                    ;
                     adaptor.addChild(root_0, CHAR_BRACE_LEFT87_tree);
                     }
                     dbg.location(124,42);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:124:42: ( DIGIT )+
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:124:42: ( DIGIT )+
                     int cnt16=0;
                     try { dbg.enterSubRule(16);
 
@@ -2352,12 +2561,14 @@ public class ComaWorkFlowParser extends DebugParser {
                     	case 1 :
                     	    dbg.enterAlt(1);
 
-                    	    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:0:0: DIGIT
+                    	    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:124:42: DIGIT
                     	    {
                     	    dbg.location(124,42);
                     	    DIGIT88=(Token)match(input,DIGIT,FOLLOW_DIGIT_in_selectionParameter928); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    DIGIT88_tree = (Object)adaptor.create(DIGIT88);
+                    	    DIGIT88_tree = 
+                    	    (Object)adaptor.create(DIGIT88)
+                    	    ;
                     	    adaptor.addChild(root_0, DIGIT88_tree);
                     	    }
 
@@ -2380,31 +2591,41 @@ public class ComaWorkFlowParser extends DebugParser {
                     dbg.location(124,49);
                     CHAR_COMMA89=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_selectionParameter931); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_COMMA89_tree = (Object)adaptor.create(CHAR_COMMA89);
+                    CHAR_COMMA89_tree = 
+                    (Object)adaptor.create(CHAR_COMMA89)
+                    ;
                     adaptor.addChild(root_0, CHAR_COMMA89_tree);
                     }
                     dbg.location(124,60);
                     V190=(Token)match(input,V1,FOLLOW_V1_in_selectionParameter933); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    V190_tree = (Object)adaptor.create(V190);
+                    V190_tree = 
+                    (Object)adaptor.create(V190)
+                    ;
                     adaptor.addChild(root_0, V190_tree);
                     }
                     dbg.location(124,63);
                     CHAR_COMMA91=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_selectionParameter935); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_COMMA91_tree = (Object)adaptor.create(CHAR_COMMA91);
+                    CHAR_COMMA91_tree = 
+                    (Object)adaptor.create(CHAR_COMMA91)
+                    ;
                     adaptor.addChild(root_0, CHAR_COMMA91_tree);
                     }
                     dbg.location(124,74);
                     V192=(Token)match(input,V1,FOLLOW_V1_in_selectionParameter937); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    V192_tree = (Object)adaptor.create(V192);
+                    V192_tree = 
+                    (Object)adaptor.create(V192)
+                    ;
                     adaptor.addChild(root_0, V192_tree);
                     }
                     dbg.location(124,77);
                     CHAR_BRACE_RIGHT93=(Token)match(input,CHAR_BRACE_RIGHT,FOLLOW_CHAR_BRACE_RIGHT_in_selectionParameter939); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_BRACE_RIGHT93_tree = (Object)adaptor.create(CHAR_BRACE_RIGHT93);
+                    CHAR_BRACE_RIGHT93_tree = 
+                    (Object)adaptor.create(CHAR_BRACE_RIGHT93)
+                    ;
                     adaptor.addChild(root_0, CHAR_BRACE_RIGHT93_tree);
                     }
 
@@ -2416,6 +2637,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
             }
             retval.stop = input.LT(-1);
+
 
             if ( state.backtracking==0 ) {
 
@@ -2429,9 +2651,11 @@ public class ComaWorkFlowParser extends DebugParser {
     	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 
         }
+
         finally {
+        	// do for sure before leaving
         }
-        dbg.location(124, 94);
+        dbg.location(124, 93);
 
         }
         finally {
@@ -2444,16 +2668,19 @@ public class ComaWorkFlowParser extends DebugParser {
     }
     // $ANTLR end "selectionParameter"
 
+
     public static class similarityCombination_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
+
     // $ANTLR start "similarityCombination"
-    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:126:2: similarityCombination : ( SIMCOMBINATION1 | ( SIMCOMBINATION2 CHAR_BRACE_LEFT V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT ) );
+    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:126:2: similarityCombination : ( SIMCOMBINATION1 | ( SIMCOMBINATION2 CHAR_BRACE_LEFT V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT ) );
     public final ComaWorkFlowParser.similarityCombination_return similarityCombination() throws RecognitionException {
         ComaWorkFlowParser.similarityCombination_return retval = new ComaWorkFlowParser.similarityCombination_return();
         retval.start = input.LT(1);
+
 
         Object root_0 = null;
 
@@ -2476,10 +2703,10 @@ public class ComaWorkFlowParser extends DebugParser {
         try { dbg.enterRule(getGrammarFileName(), "similarityCombination");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(126, 2);
+        dbg.location(126, 1);
 
         try {
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:126:24: ( SIMCOMBINATION1 | ( SIMCOMBINATION2 CHAR_BRACE_LEFT V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT ) )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:126:24: ( SIMCOMBINATION1 | ( SIMCOMBINATION2 CHAR_BRACE_LEFT V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT ) )
             int alt18=2;
             try { dbg.enterDecision(18, decisionCanBacktrack[18]);
 
@@ -2498,6 +2725,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                 dbg.recognitionException(nvae);
                 throw nvae;
+
             }
             } finally {dbg.exitDecision(18);}
 
@@ -2505,14 +2733,17 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:126:26: SIMCOMBINATION1
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:126:26: SIMCOMBINATION1
                     {
                     root_0 = (Object)adaptor.nil();
+
 
                     dbg.location(126,26);
                     SIMCOMBINATION194=(Token)match(input,SIMCOMBINATION1,FOLLOW_SIMCOMBINATION1_in_similarityCombination954); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SIMCOMBINATION194_tree = (Object)adaptor.create(SIMCOMBINATION194);
+                    SIMCOMBINATION194_tree = 
+                    (Object)adaptor.create(SIMCOMBINATION194)
+                    ;
                     adaptor.addChild(root_0, SIMCOMBINATION194_tree);
                     }
 
@@ -2521,50 +2752,63 @@ public class ComaWorkFlowParser extends DebugParser {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:126:44: ( SIMCOMBINATION2 CHAR_BRACE_LEFT V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:126:44: ( SIMCOMBINATION2 CHAR_BRACE_LEFT V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT )
                     {
                     root_0 = (Object)adaptor.nil();
 
+
                     dbg.location(126,44);
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:126:44: ( SIMCOMBINATION2 CHAR_BRACE_LEFT V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT )
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:126:44: ( SIMCOMBINATION2 CHAR_BRACE_LEFT V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT )
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:126:46: SIMCOMBINATION2 CHAR_BRACE_LEFT V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT
+                    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:126:46: SIMCOMBINATION2 CHAR_BRACE_LEFT V1 CHAR_COMMA V1 CHAR_BRACE_RIGHT
                     {
                     dbg.location(126,46);
                     SIMCOMBINATION295=(Token)match(input,SIMCOMBINATION2,FOLLOW_SIMCOMBINATION2_in_similarityCombination960); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SIMCOMBINATION295_tree = (Object)adaptor.create(SIMCOMBINATION295);
+                    SIMCOMBINATION295_tree = 
+                    (Object)adaptor.create(SIMCOMBINATION295)
+                    ;
                     adaptor.addChild(root_0, SIMCOMBINATION295_tree);
                     }
                     dbg.location(126,62);
                     CHAR_BRACE_LEFT96=(Token)match(input,CHAR_BRACE_LEFT,FOLLOW_CHAR_BRACE_LEFT_in_similarityCombination962); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_BRACE_LEFT96_tree = (Object)adaptor.create(CHAR_BRACE_LEFT96);
+                    CHAR_BRACE_LEFT96_tree = 
+                    (Object)adaptor.create(CHAR_BRACE_LEFT96)
+                    ;
                     adaptor.addChild(root_0, CHAR_BRACE_LEFT96_tree);
                     }
                     dbg.location(126,78);
                     V197=(Token)match(input,V1,FOLLOW_V1_in_similarityCombination964); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    V197_tree = (Object)adaptor.create(V197);
+                    V197_tree = 
+                    (Object)adaptor.create(V197)
+                    ;
                     adaptor.addChild(root_0, V197_tree);
                     }
                     dbg.location(126,81);
                     CHAR_COMMA98=(Token)match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_similarityCombination966); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_COMMA98_tree = (Object)adaptor.create(CHAR_COMMA98);
+                    CHAR_COMMA98_tree = 
+                    (Object)adaptor.create(CHAR_COMMA98)
+                    ;
                     adaptor.addChild(root_0, CHAR_COMMA98_tree);
                     }
                     dbg.location(126,92);
                     V199=(Token)match(input,V1,FOLLOW_V1_in_similarityCombination968); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    V199_tree = (Object)adaptor.create(V199);
+                    V199_tree = 
+                    (Object)adaptor.create(V199)
+                    ;
                     adaptor.addChild(root_0, V199_tree);
                     }
                     dbg.location(126,95);
                     CHAR_BRACE_RIGHT100=(Token)match(input,CHAR_BRACE_RIGHT,FOLLOW_CHAR_BRACE_RIGHT_in_similarityCombination970); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR_BRACE_RIGHT100_tree = (Object)adaptor.create(CHAR_BRACE_RIGHT100);
+                    CHAR_BRACE_RIGHT100_tree = 
+                    (Object)adaptor.create(CHAR_BRACE_RIGHT100)
+                    ;
                     adaptor.addChild(root_0, CHAR_BRACE_RIGHT100_tree);
                     }
 
@@ -2576,6 +2820,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
             }
             retval.stop = input.LT(-1);
+
 
             if ( state.backtracking==0 ) {
 
@@ -2589,9 +2834,11 @@ public class ComaWorkFlowParser extends DebugParser {
     	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 
         }
+
         finally {
+        	// do for sure before leaving
         }
-        dbg.location(126, 112);
+        dbg.location(126, 111);
 
         }
         finally {
@@ -2604,16 +2851,19 @@ public class ComaWorkFlowParser extends DebugParser {
     }
     // $ANTLR end "similarityCombination"
 
+
     public static class allowedToken_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
+
     // $ANTLR start "allowedToken"
-    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:135:2: allowedToken : ( RESOLUTION_1 | RESOLUTION_2 | RESOLUTION_3 | SIMMEASURE | SETCOMBINATION | COMPOSITION | SIMCOMBINATION1 | SIMCOMBINATION2 | RESULT_COMBINATION | DIRECTION | SELECTION_THRESHOLD | SELECTION_MAXDELTA | SELECTION_MAXN | SELECTION_MULTIPLE );
+    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:135:2: allowedToken : ( RESOLUTION_1 | RESOLUTION_2 | RESOLUTION_3 | SIMMEASURE | SETCOMBINATION | COMPOSITION | SIMCOMBINATION1 | SIMCOMBINATION2 | RESULT_COMBINATION | DIRECTION | SELECTION_THRESHOLD | SELECTION_MAXDELTA | SELECTION_MAXN | SELECTION_MULTIPLE );
     public final ComaWorkFlowParser.allowedToken_return allowedToken() throws RecognitionException {
         ComaWorkFlowParser.allowedToken_return retval = new ComaWorkFlowParser.allowedToken_return();
         retval.start = input.LT(1);
+
 
         Object root_0 = null;
 
@@ -2624,22 +2874,27 @@ public class ComaWorkFlowParser extends DebugParser {
         try { dbg.enterRule(getGrammarFileName(), "allowedToken");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(135, 2);
+        dbg.location(135, 1);
 
         try {
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:135:15: ( RESOLUTION_1 | RESOLUTION_2 | RESOLUTION_3 | SIMMEASURE | SETCOMBINATION | COMPOSITION | SIMCOMBINATION1 | SIMCOMBINATION2 | RESULT_COMBINATION | DIRECTION | SELECTION_THRESHOLD | SELECTION_MAXDELTA | SELECTION_MAXN | SELECTION_MULTIPLE )
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:135:15: ( RESOLUTION_1 | RESOLUTION_2 | RESOLUTION_3 | SIMMEASURE | SETCOMBINATION | COMPOSITION | SIMCOMBINATION1 | SIMCOMBINATION2 | RESULT_COMBINATION | DIRECTION | SELECTION_THRESHOLD | SELECTION_MAXDELTA | SELECTION_MAXN | SELECTION_MULTIPLE )
             dbg.enterAlt(1);
 
-            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:
+            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:
             {
             root_0 = (Object)adaptor.nil();
 
+
             dbg.location(135,15);
             set101=(Token)input.LT(1);
-            if ( (input.LA(1)>=RESULT_COMBINATION && input.LA(1)<=SIMMEASURE)||(input.LA(1)>=COMPOSITION && input.LA(1)<=SELECTION_THRESHOLD)||(input.LA(1)>=SELECTION_MAXDELTA && input.LA(1)<=SIMCOMBINATION2) ) {
+
+            if ( input.LA(1)==COMPOSITION||(input.LA(1) >= DIRECTION && input.LA(1) <= SIMMEASURE) ) {
                 input.consume();
-                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set101));
-                state.errorRecovery=false;state.failed=false;
+                if ( state.backtracking==0 ) adaptor.addChild(root_0, 
+                (Object)adaptor.create(set101)
+                );
+                state.errorRecovery=false;
+                state.failed=false;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
@@ -2653,6 +2908,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
             retval.stop = input.LT(-1);
 
+
             if ( state.backtracking==0 ) {
 
             retval.tree = (Object)adaptor.rulePostProcessing(root_0);
@@ -2665,9 +2921,11 @@ public class ComaWorkFlowParser extends DebugParser {
     	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
 
         }
+
         finally {
+        	// do for sure before leaving
         }
-        dbg.location(137, 96);
+        dbg.location(137, 95);
 
         }
         finally {
@@ -2681,17 +2939,17 @@ public class ComaWorkFlowParser extends DebugParser {
     // $ANTLR end "allowedToken"
 
     // $ANTLR start synpred5_ComaWorkFlow
-    public final void synpred5_ComaWorkFlow_fragment() throws RecognitionException {   
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:42:7: ( ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? ) )
+    public final void synpred5_ComaWorkFlow_fragment() throws RecognitionException {
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:42:7: ( ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? ) )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:42:7: ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:42:7: ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? )
         {
         dbg.location(42,7);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:42:7: ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:42:7: ( strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )? )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:42:9: strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )?
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:42:9: strategy CHAR_SEMICOLON strategy ( CHAR_SEMICOLON selection )?
         {
         dbg.location(42,9);
         pushFollow(FOLLOW_strategy_in_synpred5_ComaWorkFlow169);
@@ -2708,7 +2966,7 @@ public class ComaWorkFlowParser extends DebugParser {
         state._fsp--;
         if (state.failed) return ;
         dbg.location(42,43);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:42:43: ( CHAR_SEMICOLON selection )?
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:42:43: ( CHAR_SEMICOLON selection )?
         int alt19=2;
         try { dbg.enterSubRule(19);
         try { dbg.enterDecision(19, decisionCanBacktrack[19]);
@@ -2724,7 +2982,7 @@ public class ComaWorkFlowParser extends DebugParser {
             case 1 :
                 dbg.enterAlt(1);
 
-                // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:42:44: CHAR_SEMICOLON selection
+                // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:42:44: CHAR_SEMICOLON selection
                 {
                 dbg.location(42,44);
                 match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_synpred5_ComaWorkFlow177); if (state.failed) return ;
@@ -2746,21 +3004,22 @@ public class ComaWorkFlowParser extends DebugParser {
 
 
         }
+
     }
     // $ANTLR end synpred5_ComaWorkFlow
 
     // $ANTLR start synpred8_ComaWorkFlow
-    public final void synpred8_ComaWorkFlow_fragment() throws RecognitionException {   
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:7: ( ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? ) )
+    public final void synpred8_ComaWorkFlow_fragment() throws RecognitionException {
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:7: ( ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? ) )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:7: ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:7: ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? )
         {
         dbg.location(44,7);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:7: ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:7: ( strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )? )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:9: strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )?
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:9: strategy ( CHAR_COMMA strategy )+ ( CHAR_SEMICOLON RESULT_COMBINATION )?
         {
         dbg.location(44,9);
         pushFollow(FOLLOW_strategy_in_synpred8_ComaWorkFlow200);
@@ -2769,7 +3028,7 @@ public class ComaWorkFlowParser extends DebugParser {
         state._fsp--;
         if (state.failed) return ;
         dbg.location(44,18);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:18: ( CHAR_COMMA strategy )+
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:18: ( CHAR_COMMA strategy )+
         int cnt20=0;
         try { dbg.enterSubRule(20);
 
@@ -2791,7 +3050,7 @@ public class ComaWorkFlowParser extends DebugParser {
         	case 1 :
         	    dbg.enterAlt(1);
 
-        	    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:19: CHAR_COMMA strategy
+        	    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:19: CHAR_COMMA strategy
         	    {
         	    dbg.location(44,19);
         	    match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_synpred8_ComaWorkFlow203); if (state.failed) return ;
@@ -2819,7 +3078,7 @@ public class ComaWorkFlowParser extends DebugParser {
         } finally {dbg.exitSubRule(20);}
 
         dbg.location(44,41);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:41: ( CHAR_SEMICOLON RESULT_COMBINATION )?
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:41: ( CHAR_SEMICOLON RESULT_COMBINATION )?
         int alt21=2;
         try { dbg.enterSubRule(21);
         try { dbg.enterDecision(21, decisionCanBacktrack[21]);
@@ -2835,7 +3094,7 @@ public class ComaWorkFlowParser extends DebugParser {
             case 1 :
                 dbg.enterAlt(1);
 
-                // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:44:42: CHAR_SEMICOLON RESULT_COMBINATION
+                // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:44:42: CHAR_SEMICOLON RESULT_COMBINATION
                 {
                 dbg.location(44,42);
                 match(input,CHAR_SEMICOLON,FOLLOW_CHAR_SEMICOLON_in_synpred8_ComaWorkFlow210); if (state.failed) return ;
@@ -2853,21 +3112,22 @@ public class ComaWorkFlowParser extends DebugParser {
 
 
         }
+
     }
     // $ANTLR end synpred8_ComaWorkFlow
 
     // $ANTLR start synpred9_ComaWorkFlow
-    public final void synpred9_ComaWorkFlow_fragment() throws RecognitionException {   
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:46:7: ( ( strategy ) )
+    public final void synpred9_ComaWorkFlow_fragment() throws RecognitionException {
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:46:7: ( ( strategy ) )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:46:7: ( strategy )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:46:7: ( strategy )
         {
         dbg.location(46,7);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:46:7: ( strategy )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:46:7: ( strategy )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:46:8: strategy
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:46:8: strategy
         {
         dbg.location(46,8);
         pushFollow(FOLLOW_strategy_in_synpred9_ComaWorkFlow234);
@@ -2880,21 +3140,22 @@ public class ComaWorkFlowParser extends DebugParser {
 
 
         }
+
     }
     // $ANTLR end synpred9_ComaWorkFlow
 
     // $ANTLR start synpred11_ComaWorkFlow
-    public final void synpred11_ComaWorkFlow_fragment() throws RecognitionException {   
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:9: ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) )
+    public final void synpred11_ComaWorkFlow_fragment() throws RecognitionException {
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:9: ( ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) ) )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:9: ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:9: ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) )
         {
         dbg.location(63,9);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:9: ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:9: ( complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination ) )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:10: complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:10: complexMatcher ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination )
         {
         dbg.location(63,10);
         pushFollow(FOLLOW_complexMatcher_in_synpred11_ComaWorkFlow357);
@@ -2903,13 +3164,13 @@ public class ComaWorkFlowParser extends DebugParser {
         state._fsp--;
         if (state.failed) return ;
         dbg.location(63,25);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:25: ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:25: ( ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:26: ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:26: ( CHAR_COMMA complexMatcher )+ CHAR_SEMICOLON similarityCombination
         {
         dbg.location(63,26);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:26: ( CHAR_COMMA complexMatcher )+
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:26: ( CHAR_COMMA complexMatcher )+
         int cnt22=0;
         try { dbg.enterSubRule(22);
 
@@ -2931,7 +3192,7 @@ public class ComaWorkFlowParser extends DebugParser {
         	case 1 :
         	    dbg.enterAlt(1);
 
-        	    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:63:27: CHAR_COMMA complexMatcher
+        	    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:63:27: CHAR_COMMA complexMatcher
         	    {
         	    dbg.location(63,27);
         	    match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_synpred11_ComaWorkFlow361); if (state.failed) return ;
@@ -2974,24 +3235,25 @@ public class ComaWorkFlowParser extends DebugParser {
 
 
         }
+
     }
     // $ANTLR end synpred11_ComaWorkFlow
 
     // $ANTLR start synpred16_ComaWorkFlow
-    public final void synpred16_ComaWorkFlow_fragment() throws RecognitionException {   
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:9: ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) )
+    public final void synpred16_ComaWorkFlow_fragment() throws RecognitionException {
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:9: ( ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) ) )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:9: ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:9: ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) )
         {
         dbg.location(83,9);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:9: ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:9: ( ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination ) )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:11: ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:11: ( matcher | complexMatcher ) ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination )
         {
         dbg.location(83,11);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:11: ( matcher | complexMatcher )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:11: ( matcher | complexMatcher )
         int alt24=2;
         try { dbg.enterSubRule(24);
         try { dbg.enterDecision(24, decisionCanBacktrack[24]);
@@ -3014,6 +3276,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
                 dbg.recognitionException(nvae);
                 throw nvae;
+
             }
         }
         else {
@@ -3023,6 +3286,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
             dbg.recognitionException(nvae);
             throw nvae;
+
         }
         } finally {dbg.exitDecision(24);}
 
@@ -3030,7 +3294,7 @@ public class ComaWorkFlowParser extends DebugParser {
             case 1 :
                 dbg.enterAlt(1);
 
-                // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:12: matcher
+                // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:12: matcher
                 {
                 dbg.location(83,12);
                 pushFollow(FOLLOW_matcher_in_synpred16_ComaWorkFlow529);
@@ -3044,7 +3308,7 @@ public class ComaWorkFlowParser extends DebugParser {
             case 2 :
                 dbg.enterAlt(2);
 
-                // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:22: complexMatcher
+                // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:22: complexMatcher
                 {
                 dbg.location(83,22);
                 pushFollow(FOLLOW_complexMatcher_in_synpred16_ComaWorkFlow533);
@@ -3060,13 +3324,13 @@ public class ComaWorkFlowParser extends DebugParser {
         } finally {dbg.exitSubRule(24);}
 
         dbg.location(83,38);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:38: ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination )
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:38: ( ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination )
         dbg.enterAlt(1);
 
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:39: ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:39: ( CHAR_COMMA ( matcher | complexMatcher ) )+ CHAR_SEMICOLON similarityCombination
         {
         dbg.location(83,39);
-        // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:39: ( CHAR_COMMA ( matcher | complexMatcher ) )+
+        // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:39: ( CHAR_COMMA ( matcher | complexMatcher ) )+
         int cnt26=0;
         try { dbg.enterSubRule(26);
 
@@ -3088,12 +3352,12 @@ public class ComaWorkFlowParser extends DebugParser {
         	case 1 :
         	    dbg.enterAlt(1);
 
-        	    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:40: CHAR_COMMA ( matcher | complexMatcher )
+        	    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:40: CHAR_COMMA ( matcher | complexMatcher )
         	    {
         	    dbg.location(83,40);
         	    match(input,CHAR_COMMA,FOLLOW_CHAR_COMMA_in_synpred16_ComaWorkFlow538); if (state.failed) return ;
         	    dbg.location(83,51);
-        	    // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:51: ( matcher | complexMatcher )
+        	    // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:51: ( matcher | complexMatcher )
         	    int alt25=2;
         	    try { dbg.enterSubRule(25);
         	    try { dbg.enterDecision(25, decisionCanBacktrack[25]);
@@ -3116,6 +3380,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
         	            dbg.recognitionException(nvae);
         	            throw nvae;
+
         	        }
         	    }
         	    else {
@@ -3125,6 +3390,7 @@ public class ComaWorkFlowParser extends DebugParser {
 
         	        dbg.recognitionException(nvae);
         	        throw nvae;
+
         	    }
         	    } finally {dbg.exitDecision(25);}
 
@@ -3132,7 +3398,7 @@ public class ComaWorkFlowParser extends DebugParser {
         	        case 1 :
         	            dbg.enterAlt(1);
 
-        	            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:52: matcher
+        	            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:52: matcher
         	            {
         	            dbg.location(83,52);
         	            pushFollow(FOLLOW_matcher_in_synpred16_ComaWorkFlow541);
@@ -3146,7 +3412,7 @@ public class ComaWorkFlowParser extends DebugParser {
         	        case 2 :
         	            dbg.enterAlt(2);
 
-        	            // C:\\Users\\arnold\\Documents\\grammar\\ComaWorkFlow.g:83:62: complexMatcher
+        	            // /Users/gio/Documents/COMA/FITMAN-SeMa/coma-engine/resources/ComaWorkFlow.g:83:62: complexMatcher
         	            {
         	            dbg.location(83,62);
         	            pushFollow(FOLLOW_complexMatcher_in_synpred16_ComaWorkFlow545);
@@ -3194,43 +3460,12 @@ public class ComaWorkFlowParser extends DebugParser {
 
 
         }
+
     }
     // $ANTLR end synpred16_ComaWorkFlow
 
     // Delegated rules
 
-    public final boolean synpred16_ComaWorkFlow() {
-        state.backtracking++;
-        dbg.beginBacktrack(state.backtracking);
-        int start = input.mark();
-        try {
-            synpred16_ComaWorkFlow_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        dbg.endBacktrack(state.backtracking, success);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred9_ComaWorkFlow() {
-        state.backtracking++;
-        dbg.beginBacktrack(state.backtracking);
-        int start = input.mark();
-        try {
-            synpred9_ComaWorkFlow_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        dbg.endBacktrack(state.backtracking, success);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred5_ComaWorkFlow() {
         state.backtracking++;
         dbg.beginBacktrack(state.backtracking);
@@ -3247,12 +3482,44 @@ public class ComaWorkFlowParser extends DebugParser {
         state.failed=false;
         return success;
     }
+    public final boolean synpred16_ComaWorkFlow() {
+        state.backtracking++;
+        dbg.beginBacktrack(state.backtracking);
+        int start = input.mark();
+        try {
+            synpred16_ComaWorkFlow_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        dbg.endBacktrack(state.backtracking, success);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred8_ComaWorkFlow() {
         state.backtracking++;
         dbg.beginBacktrack(state.backtracking);
         int start = input.mark();
         try {
             synpred8_ComaWorkFlow_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        dbg.endBacktrack(state.backtracking, success);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred9_ComaWorkFlow() {
+        state.backtracking++;
+        dbg.beginBacktrack(state.backtracking);
+        int start = input.mark();
+        try {
+            synpred9_ComaWorkFlow_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -3287,125 +3554,124 @@ public class ComaWorkFlowParser extends DebugParser {
     public static final BitSet FOLLOW_strategy_in_coma124 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_complexMatcher_in_coma128 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_matcher_in_coma132 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_workflow149 = new BitSet(new long[]{0x0000000000018010L});
-    public static final BitSet FOLLOW_strategy_in_workflow169 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_workflow172 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_strategy_in_workflow174 = new BitSet(new long[]{0x0000000000000120L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_workflow177 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_selection_in_workflow179 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_workflow149 = new BitSet(new long[]{0x0000000004000820L});
+    public static final BitSet FOLLOW_strategy_in_workflow169 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_workflow172 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_strategy_in_workflow174 = new BitSet(new long[]{0x0000000000000240L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_workflow177 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_selection_in_workflow179 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_strategy_in_workflow200 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_workflow203 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_strategy_in_workflow205 = new BitSet(new long[]{0x00000000000001A0L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_workflow210 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_RESULT_COMBINATION_in_workflow212 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_strategy_in_workflow234 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_reuse_in_workflow259 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_workflow203 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_strategy_in_workflow205 = new BitSet(new long[]{0x00000000000002C0L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_workflow210 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_RESULT_COMBINATION_in_workflow212 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_strategy_in_workflow234 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_reuse_in_workflow259 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_CHAR_BRACE_RIGHT_in_workflow273 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_strategy307 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RESOLUTION_1_in_strategy318 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_strategy327 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_strategy307 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_RESOLUTION_1_in_strategy318 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_strategy327 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_complexMatcher_in_strategy357 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_strategy361 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_complexMatcher_in_strategy363 = new BitSet(new long[]{0x0000000000000180L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_strategy367 = new BitSet(new long[]{0x0000000004080000L});
-    public static final BitSet FOLLOW_similarityCombination_in_strategy369 = new BitSet(new long[]{0x0000000000000120L});
-    public static final BitSet FOLLOW_complexMatcher_in_strategy393 = new BitSet(new long[]{0x0000000000000120L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_strategy417 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_selection_in_strategy419 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_strategy361 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_complexMatcher_in_strategy363 = new BitSet(new long[]{0x0000000000000280L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_strategy367 = new BitSet(new long[]{0x0000000000C00000L});
+    public static final BitSet FOLLOW_similarityCombination_in_strategy369 = new BitSet(new long[]{0x0000000000000240L});
+    public static final BitSet FOLLOW_complexMatcher_in_strategy393 = new BitSet(new long[]{0x0000000000000240L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_strategy417 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_selection_in_strategy419 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_CHAR_BRACE_RIGHT_in_strategy447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_complexMatcher476 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RESOLUTION_2_in_complexMatcher487 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_complexMatcher496 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_complexMatcher476 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_RESOLUTION_2_in_complexMatcher487 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_complexMatcher496 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_matcher_in_complexMatcher529 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_complexMatcher_in_complexMatcher533 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_complexMatcher538 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_matcher_in_complexMatcher541 = new BitSet(new long[]{0x0000000000000180L});
-    public static final BitSet FOLLOW_complexMatcher_in_complexMatcher545 = new BitSet(new long[]{0x0000000000000180L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_complexMatcher550 = new BitSet(new long[]{0x0000000004080000L});
-    public static final BitSet FOLLOW_similarityCombination_in_complexMatcher552 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_matcher_in_complexMatcher575 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_complexMatcher_in_complexMatcher579 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_complexMatcher601 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_SETCOMBINATION_in_complexMatcher603 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_complexMatcher538 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_matcher_in_complexMatcher541 = new BitSet(new long[]{0x0000000000000280L});
+    public static final BitSet FOLLOW_complexMatcher_in_complexMatcher545 = new BitSet(new long[]{0x0000000000000280L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_complexMatcher550 = new BitSet(new long[]{0x0000000000C00000L});
+    public static final BitSet FOLLOW_similarityCombination_in_complexMatcher552 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_matcher_in_complexMatcher575 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_complexMatcher_in_complexMatcher579 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_complexMatcher601 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_SETCOMBINATION_in_complexMatcher603 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_CHAR_BRACE_RIGHT_in_complexMatcher627 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_matcher644 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_RESOLUTION_3_in_matcher655 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_matcher664 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_SIMMEASURE_in_matcher693 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_matcher644 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RESOLUTION_3_in_matcher655 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_matcher664 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_SIMMEASURE_in_matcher693 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_SIMMEASURE_in_matcher716 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_matcher720 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_SIMMEASURE_in_matcher722 = new BitSet(new long[]{0x0000000000000180L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_matcher726 = new BitSet(new long[]{0x0000000004080000L});
-    public static final BitSet FOLLOW_similarityCombination_in_matcher728 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_matcher748 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_SETCOMBINATION_in_matcher750 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_matcher720 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_SIMMEASURE_in_matcher722 = new BitSet(new long[]{0x0000000000000280L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_matcher726 = new BitSet(new long[]{0x0000000000C00000L});
+    public static final BitSet FOLLOW_similarityCombination_in_matcher728 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_matcher748 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_SETCOMBINATION_in_matcher750 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_CHAR_BRACE_RIGHT_in_matcher776 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_reuse790 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_reuse798 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_reuse798 = new BitSet(new long[]{0x0000000004000800L});
     public static final BitSet FOLLOW_set_in_reuse800 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_reuse808 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_reuse808 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_BOOLEAN_in_reuse810 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_reuse812 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_reuse812 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_COMPOSITION_in_reuse814 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_reuse816 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_reuse816 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_SIMCOMBINATION1_in_reuse818 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_reuse820 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_reuse820 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_BOOLEAN_in_reuse822 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_selection844 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_selection844 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_DIRECTION_in_selection846 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_selection848 = new BitSet(new long[]{0x0000000003A00000L});
-    public static final BitSet FOLLOW_selectionParameter_in_selection850 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_selection848 = new BitSet(new long[]{0x00000000001E0000L});
+    public static final BitSet FOLLOW_selectionParameter_in_selection850 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_CHAR_BRACE_RIGHT_in_selection852 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SELECTION_THRESHOLD_in_selectionParameter864 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter866 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_V1_in_selectionParameter868 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SELECTION_THRESHOLD_in_selectionParameter864 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter866 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_V1_in_selectionParameter868 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_CHAR_BRACE_RIGHT_in_selectionParameter870 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SELECTION_MAXDELTA_in_selectionParameter882 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter884 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_V1_in_selectionParameter886 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SELECTION_MAXDELTA_in_selectionParameter882 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter884 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_V1_in_selectionParameter886 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_CHAR_BRACE_RIGHT_in_selectionParameter888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SELECTION_MAXN_in_selectionParameter900 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter902 = new BitSet(new long[]{0x0000000000018000L});
-    public static final BitSet FOLLOW_set_in_selectionParameter904 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_SELECTION_MAXN_in_selectionParameter900 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter902 = new BitSet(new long[]{0x0000000004000800L});
+    public static final BitSet FOLLOW_set_in_selectionParameter904 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_CHAR_BRACE_RIGHT_in_selectionParameter912 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SELECTION_MULTIPLE_in_selectionParameter924 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter926 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_DIGIT_in_selectionParameter928 = new BitSet(new long[]{0x0000000000008080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_selectionParameter931 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_SELECTION_MULTIPLE_in_selectionParameter924 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_selectionParameter926 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_DIGIT_in_selectionParameter928 = new BitSet(new long[]{0x0000000000000880L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_selectionParameter931 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_V1_in_selectionParameter933 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_selectionParameter935 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_V1_in_selectionParameter937 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_selectionParameter935 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_V1_in_selectionParameter937 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_CHAR_BRACE_RIGHT_in_selectionParameter939 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_SIMCOMBINATION1_in_similarityCombination954 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SIMCOMBINATION2_in_similarityCombination960 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_similarityCombination962 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_SIMCOMBINATION2_in_similarityCombination960 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_BRACE_LEFT_in_similarityCombination962 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_V1_in_similarityCombination964 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_similarityCombination966 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_V1_in_similarityCombination968 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_similarityCombination966 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_V1_in_similarityCombination968 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_CHAR_BRACE_RIGHT_in_similarityCombination970 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_allowedToken0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_strategy_in_synpred5_ComaWorkFlow169 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_synpred5_ComaWorkFlow172 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_strategy_in_synpred5_ComaWorkFlow174 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_synpred5_ComaWorkFlow177 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_strategy_in_synpred5_ComaWorkFlow169 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_synpred5_ComaWorkFlow172 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_strategy_in_synpred5_ComaWorkFlow174 = new BitSet(new long[]{0x0000000000000202L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_synpred5_ComaWorkFlow177 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_selection_in_synpred5_ComaWorkFlow179 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_strategy_in_synpred8_ComaWorkFlow200 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_synpred8_ComaWorkFlow203 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_strategy_in_synpred8_ComaWorkFlow205 = new BitSet(new long[]{0x0000000000000182L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_synpred8_ComaWorkFlow210 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_synpred8_ComaWorkFlow203 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_strategy_in_synpred8_ComaWorkFlow205 = new BitSet(new long[]{0x0000000000000282L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_synpred8_ComaWorkFlow210 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_RESULT_COMBINATION_in_synpred8_ComaWorkFlow212 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_strategy_in_synpred9_ComaWorkFlow234 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_complexMatcher_in_synpred11_ComaWorkFlow357 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_synpred11_ComaWorkFlow361 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_complexMatcher_in_synpred11_ComaWorkFlow363 = new BitSet(new long[]{0x0000000000000180L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_synpred11_ComaWorkFlow367 = new BitSet(new long[]{0x0000000004080000L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_synpred11_ComaWorkFlow361 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_complexMatcher_in_synpred11_ComaWorkFlow363 = new BitSet(new long[]{0x0000000000000280L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_synpred11_ComaWorkFlow367 = new BitSet(new long[]{0x0000000000C00000L});
     public static final BitSet FOLLOW_similarityCombination_in_synpred11_ComaWorkFlow369 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_matcher_in_synpred16_ComaWorkFlow529 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_complexMatcher_in_synpred16_ComaWorkFlow533 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CHAR_COMMA_in_synpred16_ComaWorkFlow538 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_matcher_in_synpred16_ComaWorkFlow541 = new BitSet(new long[]{0x0000000000000180L});
-    public static final BitSet FOLLOW_complexMatcher_in_synpred16_ComaWorkFlow545 = new BitSet(new long[]{0x0000000000000180L});
-    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_synpred16_ComaWorkFlow550 = new BitSet(new long[]{0x0000000004080000L});
+    public static final BitSet FOLLOW_CHAR_COMMA_in_synpred16_ComaWorkFlow538 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_matcher_in_synpred16_ComaWorkFlow541 = new BitSet(new long[]{0x0000000000000280L});
+    public static final BitSet FOLLOW_complexMatcher_in_synpred16_ComaWorkFlow545 = new BitSet(new long[]{0x0000000000000280L});
+    public static final BitSet FOLLOW_CHAR_SEMICOLON_in_synpred16_ComaWorkFlow550 = new BitSet(new long[]{0x0000000000C00000L});
     public static final BitSet FOLLOW_similarityCombination_in_synpred16_ComaWorkFlow552 = new BitSet(new long[]{0x0000000000000002L});
 
 }

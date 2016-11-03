@@ -147,7 +147,7 @@ options {output=AST;backtrack=true;}
 				'trigramcoma' | 'trigramifuice' | 'trigramlowmem' | 'trigramopt' | 'edjoin' | 
 				'levenshteinlucene' | 'levenshteinsecondstring' | 'levenshteinlimes' |'cosineppjoin+fullycached' | 'cosineppjoin' | 'cosinesimmetrics' | 
 				'jaccardppjoin+fullycached' | 'jaccardppjoin+' | 'jaccardsecondstring' | 'jaccardsimmetrics' | 'jarowinklerlucene' | 
-				'tfidflucenefullycached' | 'tfidflucenefullycachedalternative' | 'tfidfsecondstring' );	
+				'tfidflucenefullycached' | 'tfidflucenefullycachedalternative' | 'tfidfsecondstring' | 'ngramtzk' );
 	
 	SETCOMBINATION: 	('set_average' | 'set_dice' | 'set_max' | 'set_min' | 'set_highest');
 	

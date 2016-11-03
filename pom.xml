@@ -36,5 +36,6 @@
   <modules>
     <module>coma-engine</module>
     <module>coma-gui</module>
+    <module>coma-contrib</module>
   </modules>
 </project>
