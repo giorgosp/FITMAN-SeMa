@@ -57,9 +57,6 @@ public class TzkNGramMatcher extends AbstractSimpleAttributeObjectMatcher implem
     }
 
     public void match(IObjectInstanceProvider sourceInstanceProvider, IObjectInstanceProvider targetInstanceProvider, IMappingStore mappingStore) throws MappingStoreException {
-        // TODO: 2/11/16 implement source schema comparison
-        // TODO: 2/11/16 add to my github
-
         // store all the words of the target schema to avoid re-iterating the targetInstanceProvider.iterator()
         IObjectInstance[] targetObjectInstances = new IObjectInstance[targetInstanceProvider.size()];
 
@@ -71,7 +68,6 @@ public class TzkNGramMatcher extends AbstractSimpleAttributeObjectMatcher implem
         Iterator targetSchemaIterator = targetInstanceProvider.iterator();
         for (int i = 0; i < targetInstanceProvider.size(); i++) {
             IObjectInstance targetInstance = (IObjectInstance) targetSchemaIterator.next();
-            // todo may need to store objectinstance here to create the correspondences later
             targetObjectInstances[i] = targetInstance;
         }
 
