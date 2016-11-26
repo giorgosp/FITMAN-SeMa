@@ -17,15 +17,29 @@
 
 package de.wdilab.coma.gui;
 
+import java.net.URL;
+import java.net.URLClassLoader;
+
 /**
- * start the COMA++ GUI 
+ * start the COMA++ GUI
  *
  * @author Sabine Massmann
  */
 public class Main {
-	public static void main(String[] _args) throws Exception {
-		System.out.println(GUIConstants.COMA_ASCIIART);
-		Controller c = new Controller();
-		c.start();
-	}
+    static void printClasspath() {
+        ClassLoader cl = ClassLoader.getSystemClassLoader();
+        URL[] urls = ((URLClassLoader) cl).getURLs();
+        for (URL url : urls) {
+            System.out.println(url.getFile());
+        }
+    }
+
+    public static void main(String[] _args) throws Exception {
+        System.out.println(GUIConstants.COMA_ASCIIART);
+
+        printClasspath();
+
+        Controller c = new Controller();
+        c.start();
+    }
 }

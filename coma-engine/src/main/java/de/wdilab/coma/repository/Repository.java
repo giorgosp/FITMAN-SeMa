@@ -94,7 +94,6 @@ public class Repository {
 					// DB_USER, DB_PASSWORD);
 //                    System.out.println("hello  2");
 					if (System.getProperty("comaUrl")!=null){
-//                        System.out.println("hello  3");
 						connection = DriverManager.getConnection(
 								System.getProperty("comaUrl"),
 								System.getProperty("comaUser"),
