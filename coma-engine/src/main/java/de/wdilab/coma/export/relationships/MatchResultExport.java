@@ -17,16 +17,11 @@
 
 package de.wdilab.coma.export.relationships;
 
-import java.util.ArrayList;
-
 import de.wdilab.coma.center.Manager;
 import de.wdilab.coma.export.ExportUtil;
-import de.wdilab.coma.structure.Element;
-import de.wdilab.coma.structure.Graph;
-import de.wdilab.coma.structure.MatchResult;
-import de.wdilab.coma.structure.Path;
-import de.wdilab.coma.structure.Source;
-import de.wdilab.coma.structure.SourceRelationship;
+import de.wdilab.coma.structure.*;
+
+import java.util.ArrayList;
 
 /**
  * This class saves a matchresult to a text file by writing the main information
@@ -57,7 +52,8 @@ public class MatchResultExport {
 	public void saveMatchResultFile(SourceRelationship sr, String fileName) {
 		if (sr == null) return;
 		MatchResult result = manager.loadMatchResult(sr.getSourceId(), sr.getTargetId(), sr.getId());
-		String resultStr = result.toString();
+//		String resultStr = result.toString();
+		String resultStr = resultToString(result);
 		// append result to file if existing other create new file
 		ExportUtil.writeToFile(fileName, resultStr, true);
 	}

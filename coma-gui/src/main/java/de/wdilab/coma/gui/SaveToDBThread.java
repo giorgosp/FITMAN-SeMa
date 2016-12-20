@@ -17,23 +17,17 @@
 
 package de.wdilab.coma.gui;
 
-import java.io.File;
-import java.util.ArrayList;
-
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileFilter;
-
-import de.wdilab.coma.insert.metadata.CSVParser;
-import de.wdilab.coma.insert.metadata.ODBCParser;
-import de.wdilab.coma.insert.metadata.OWLParser_V3;
-import de.wdilab.coma.insert.metadata.SQLParser;
-import de.wdilab.coma.insert.metadata.XDRParser;
-import de.wdilab.coma.insert.metadata.XSDParser;
+import de.wdilab.coma.insert.metadata.*;
 import de.wdilab.coma.insert.relationships.MatchResultParser;
 import de.wdilab.coma.structure.Graph;
 import de.wdilab.coma.structure.MatchResult;
 import de.wdilab.coma.structure.SourceRelationship;
+import org.apache.commons.lang.NotImplementedException;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import java.io.File;
+import java.util.ArrayList;
 
 /**
  * SaveSchemaToDBThread is a Thread, that saves a Schema to the database (while
@@ -686,6 +680,7 @@ public class SaveToDBThread extends Thread {
 							if (results != null)
 								matchResults.addAll(results);
 						} else if (_name.toLowerCase().endsWith(Strings.RDF)){
+							throw new NotImplementedException();
 //							MatchResult result = controller
 //							.getManager().loadOWLAlignmentFile(_name, null, null);							
 //							if (result != null){
